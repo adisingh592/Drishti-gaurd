@@ -1,0 +1,63 @@
+# ==============================================================================
+#                 DRISHTI GUARD - FIGMA MODULE GITIGNORE
+# ==============================================================================
+
+# Dependencies
+node_modules/
+jspm_packages/
+web_modules/
+.npm/
+.pnpm-store/
+pnpm-debug.log*
+
+# Builds and Outputs
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Local Environments
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env.local
+*.env
+
+# OS / Editor Files
+.DS_Store
+.DS_Store?
+._*
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.sw?
+
+# AI Agents & Assistants Metadata (Clean Github Repo)
+.gemini/
+.system_generated/
+.cursorrules
+.cursor/
+.clinerules
+.copilot/
+.windsurfrules
+copilot-instructions.md
+ai-instructions.md
+
+# Planning docs, scratchpads & logs
+brain/
+artifacts/
+scratch/
+walkthrough.md
+implementation_plan.md
+task.md
+
+# Guidelines template
+guidelines/
+Guidelines.md
+guidelines.md
+*guidelines*

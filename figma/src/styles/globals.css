@@ -1,0 +1,134 @@
+/* Custom glassmorphism and cyberpunk styling utilities */
+
+@utility glass {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+@utility glass-dark {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+@utility glass-blue {
+  background: rgba(37, 99, 235, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+@utility neon-text {
+  color: #00f5ff;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5), 0 0 20px rgba(0, 245, 255, 0.3);
+}
+
+@utility neon-glow {
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.35), 0 0 40px rgba(0, 245, 255, 0.15);
+}
+
+@utility neon-border {
+  border: 1px solid rgba(0, 245, 255, 0.45);
+  box-shadow: inset 0 0 20px rgba(0, 245, 255, 0.05), 0 0 20px rgba(0, 245, 255, 0.15);
+}
+
+@utility grid-bg {
+  background-image: linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+@utility btn-primary {
+  position: relative;
+  overflow: hidden;
+  background-color: #06b6d4; /* Tailwind cyan-500 */
+  color: #020814;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #22d3ee; /* Tailwind cyan-400 */
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.7), 0 0 60px rgba(6, 182, 212, 0.35);
+  transform: translateY(-2px);
+}
+
+@utility btn-outline {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  color: #22d3ee; /* Tailwind cyan-400 */
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 245, 255, 0.5);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 245, 255, 0.1);
+  border-color: rgba(0, 245, 255, 0.8);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+@utility gradient-text {
+  background: linear-gradient(135deg, #00f5ff 0%, #0ea5e9 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility gradient-text-red {
+  background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Animation Keyframes and classes */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+  50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.9), 0 0 60px rgba(239, 68, 68, 0.4); }
+}
+
+@keyframes scanLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(500%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-radar {
+  animation: radarSweep 3s linear infinite;
+}
+
+.animate-blink {
+  animation: blink 1.5s ease-in-out infinite;
+}
