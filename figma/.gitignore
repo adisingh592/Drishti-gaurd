@@ -61,3 +61,7 @@ guidelines/
 Guidelines.md
 guidelines.md
 *guidelines*
+
+# Ignore all markdown documentation and implementation plans
+*.md
+**/*.md
