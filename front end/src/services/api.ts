@@ -22,10 +22,39 @@ export function mediaUrl(path: string): string {
   return `${API_BASE}${path}`;
 }
 
-export async function uploadVideo(file: File): Promise<UploadResponse> {
-  const form = new FormData();
-  form.append('file', file);
-  return request<UploadResponse>('/api/upload', { method: 'POST', body: form });
+export async function uploadVideo(
+  file: File,
+  onProgress?: (percent: number) => void,
+): Promise<UploadResponse> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    const form = new FormData();
+    form.append('file', file);
+    xhr.open('POST', `${API_BASE}/api/upload`);
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable && onProgress) {
+        onProgress(Math.round((e.loaded / e.total) * 100));
+      }
+    };
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          resolve(JSON.parse(xhr.responseText) as UploadResponse);
+        } catch {
+          reject(new Error('Invalid server response'));
+        }
+      } else {
+        try {
+          const body = JSON.parse(xhr.responseText);
+          reject(new Error(body.detail || `Upload failed (${xhr.status})`));
+        } catch {
+          reject(new Error(`Upload failed (${xhr.status})`));
+        }
+      }
+    };
+    xhr.onerror = () => reject(new Error('Network error during upload'));
+    xhr.send(form);
+  });
 }
 
 export async function startAnalysis(uploadId: string): Promise<{ upload_id: string; status: string; message: string }> {

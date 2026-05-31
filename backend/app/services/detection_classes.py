@@ -36,6 +36,10 @@ COCO_TO_DRISHTI: dict[str, str] = {
     "handbag": "Bag",
     "suitcase": "Bag",
     "knife": "Knife",
+    "handgun": "Pistol",
+    "firearm": "Gun",
+    "shotgun": "Rifle",
+    "weapon": "Weapon",
 }
 
 # Custom surveillance model aliases (when using fine-tuned weights)

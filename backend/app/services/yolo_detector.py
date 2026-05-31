@@ -125,7 +125,7 @@ class YOLODetector:
                 track_id = int(boxes.id[i]) if boxes.id is not None else None
                 detections.append(
                     FrameDetection(
-                        frame_number=frame_num,
+                        frame_number=frame_number,
                         timestamp_seconds=ts,
                         class_name=class_name,
                         confidence=float(boxes.conf[i]),

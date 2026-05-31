@@ -27,9 +27,11 @@ from app.services.screenshot_generator import capture_screenshot
 from app.services.summary_generator import generate_summary
 from app.services.threat_engine import build_detection_records, generate_threat_events
 from app.services.vehicle_tracker import analyze_vehicles
+from app.services.weapon_detector import WeaponDetector
 from app.services.yolo_detector import FrameDetection, YOLODetector
 
 _detector: Optional[YOLODetector] = None
+_weapon_detector: Optional[WeaponDetector] = None
 
 
 def get_detector() -> YOLODetector:
@@ -37,6 +39,13 @@ def get_detector() -> YOLODetector:
     if _detector is None:
         _detector = YOLODetector()
     return _detector
+
+
+def get_weapon_detector() -> WeaponDetector:
+    global _weapon_detector
+    if _weapon_detector is None:
+        _weapon_detector = WeaponDetector()
+    return _weapon_detector
 
 
 async def _update_progress(
@@ -64,6 +73,7 @@ async def run_analysis_pipeline(
 ) -> AnalysisResultResponse:
     settings = get_settings()
     detector = get_detector()
+    weapon_detector = get_weapon_detector() if settings.enable_weapon_scan else None
 
     await _update_progress(upload_id, 5, "extract_frames", "Extracting frames from video")
 
@@ -76,32 +86,46 @@ async def run_analysis_pipeline(
 
     all_detections: list[FrameDetection] = []
     frame_cache: dict[int, np.ndarray] = {}
-    frame_numbers: list[int] = []
     frames_batch: list[np.ndarray] = []
     nums_batch: list[int] = []
     processed_frames = 0
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+    sampled_total = max(1, total_frames // sample)
     frame_idx = 0
 
     loop = asyncio.get_event_loop()
 
     def process_batch() -> list[FrameDetection]:
-        return detector.detect_batch(frames_batch.copy(), nums_batch.copy(), fps)
+        frames_copy = frames_batch.copy()
+        nums_copy = nums_batch.copy()
+        dets = detector.detect_batch(frames_copy, nums_copy, fps)
+        if weapon_detector and weapon_detector.is_active:
+            person_boxes: list[list[tuple[float, float, float, float]]] = []
+            for frame, fn in zip(frames_copy, nums_copy):
+                boxes = [d.bbox for d in dets if d.frame_number == fn and d.class_name == "Person"]
+                person_boxes.append(boxes)
+            weapon_dets = weapon_detector.detect_batch(frames_copy, nums_copy, fps, person_boxes)
+            dets.extend(weapon_dets)
+        return dets
+
+    def cache_frame(fn: int, img: np.ndarray) -> None:
+        if len(frame_cache) >= settings.max_cached_frames:
+            oldest = next(iter(frame_cache))
+            del frame_cache[oldest]
+        frame_cache[fn] = img
 
     while True:
         ret, frame = cap.read()
         if not ret:
             break
         if frame_idx % sample == 0:
-            frame_cache[frame_idx] = frame.copy()
             frames_batch.append(frame)
             nums_batch.append(frame_idx)
-            frame_numbers.append(frame_idx)
             if len(frames_batch) >= batch_size:
                 dets = await loop.run_in_executor(None, process_batch)
                 all_detections.extend(dets)
                 processed_frames += len(frames_batch)
-                pct = min(55, 5 + int(50 * processed_frames / max(total_frames // sample, 1)))
+                pct = min(55, 5 + int(50 * processed_frames / sampled_total))
                 await _update_progress(
                     upload_id, pct, "yolo_inference", f"YOLO inference — {processed_frames} frames"
                 )
@@ -117,20 +141,23 @@ async def run_analysis_pipeline(
     cap.release()
     await _update_progress(upload_id, 58, "tracking", "Running ByteTrack object tracking")
 
-    # Second pass with tracking on threat-heavy segments
+    # Second pass: tracking on a limited set of key frames (faster than full video)
     cap = cv2.VideoCapture(str(video_path))
     tracked: list[FrameDetection] = []
-    key_frames = sorted({d.frame_number for d in all_detections})[:120]
+    key_frames = sorted({d.frame_number for d in all_detections})[: settings.max_tracking_frames]
     for fn in key_frames:
         cap.set(cv2.CAP_PROP_POS_FRAMES, fn)
         ret, frame = cap.read()
         if ret:
-            td = await loop.run_in_executor(None, lambda f=frame, n=fn: detector.detect_with_tracking(f, n, fps))
+            td = await loop.run_in_executor(
+                None, lambda f=frame.copy(), n=fn: detector.detect_with_tracking(f, n, fps)
+            )
             tracked.extend(td)
-            frame_cache[fn] = frame
+            cache_frame(fn, frame)
     cap.release()
     all_detections.extend(tracked)
 
+    await _update_progress(upload_id, 65, "weapon_scan", "Scanning for weapons (YOLO-World)")
     await _update_progress(upload_id, 68, "threat_detection", "Generating threat events")
     crowd_stats = analyze_crowd(all_detections, fps)
     vehicle_stats, traffic_events = analyze_vehicles(all_detections, fps, width)

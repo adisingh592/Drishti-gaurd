@@ -19,6 +19,10 @@ const PLACEHOLDER_TIMELINE = [
   { time: '00:00', type: 'Awaiting analysis…', severity: 'LOW' as const, color: 'text-gray-500', dot: 'bg-gray-500', timestampSeconds: 0 },
 ];
 
+const NO_THREATS_TIMELINE = [
+  { time: '—', type: 'No threats detected in this scan', severity: 'LOW' as const, color: 'text-emerald-400', dot: 'bg-emerald-400', timestampSeconds: 0 },
+];
+
 export function UploadAnalyzePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -46,7 +50,7 @@ export function UploadAnalyzePage() {
 
   const applyResult = useCallback((result: AnalysisResult) => {
     const ui = mapResultToUI(result);
-    setTimeline(ui.timeline.length ? ui.timeline : PLACEHOLDER_TIMELINE);
+    setTimeline(ui.timeline.length ? ui.timeline : NO_THREATS_TIMELINE);
     setSnapshots(ui.snapshots);
     setScore(ui.score);
     setRiskLevel(ui.riskLevel);
@@ -69,7 +73,10 @@ export function UploadAnalyzePage() {
     setFileName(file.name);
 
     try {
-      const upload = await uploadVideo(file);
+      const upload = await uploadVideo(file, (pct) => {
+        setProgress(Math.min(7, Math.max(1, Math.round(pct * 0.07))));
+        setStatusMessage(`Uploading… ${pct}%`);
+      });
       setProgress(8);
       setStatusMessage('Starting AI analysis…');
       await startAnalysis(upload.upload_id);

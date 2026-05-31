@@ -19,12 +19,18 @@ class Settings(BaseSettings):
 
     yolo_model: str = "yolo11n.pt"
     custom_model_path: str = ""
+    weapon_model_path: str = ""
+    weapon_world_model: str = "yolov8s-worldv2.pt"
+    weapon_confidence_threshold: float = 0.22
+    enable_weapon_scan: bool = True
     device: str = "cuda"
-    frame_sample_rate: int = 2
+    frame_sample_rate: int = 5
     batch_size: int = 16
     confidence_threshold: float = 0.45
     use_gpu: bool = True
     simulation_mode: bool = False
+    max_tracking_frames: int = 40
+    max_cached_frames: int = 80
 
     @property
     def uploads_dir(self) -> Path:
@@ -46,6 +52,12 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     settings = Settings()
-    for d in (settings.data_dir, settings.uploads_dir, settings.screenshots_dir, settings.reports_dir):
+    for d in (
+        settings.data_dir,
+        settings.uploads_dir,
+        settings.screenshots_dir,
+        settings.reports_dir,
+        settings.data_dir / "models",
+    ):
         d.mkdir(parents=True, exist_ok=True)
     return settings
