@@ -1,20 +1,12 @@
-# ==============================================================================
-#                 DRISHTI GUARD - STANDARD & CLEANUP GITIGNORE
-# ==============================================================================
-
-# ------------------------------------------------------------------------------
-# 📦 Node / Package Dependency Cache
-# ------------------------------------------------------------------------------
+# Dependencies
 node_modules/
 jspm_packages/
 web_modules/
 .npm/
 .pnpm-store/
-pnpm-debug.log*
+*.log
 
-# ------------------------------------------------------------------------------
-# 🏗️ Production Builds & Outputs
-# ------------------------------------------------------------------------------
+# Production builds
 dist/
 build/
 out/
@@ -25,20 +17,32 @@ out/
 .eslintcache
 .stylelintcache
 
-# ------------------------------------------------------------------------------
-# 🔒 Local Environment Variables / Secrets
-# ------------------------------------------------------------------------------
+# Local environment variables and secrets
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-*.env.local
 *.env
+*.env.local
+!.env.example
 
-# ------------------------------------------------------------------------------
-# 💻 Operating System & IDE Configs
-# ------------------------------------------------------------------------------
+# Python backend
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+backend/data/
+backend/*.pt
+
+# OS files
 .DS_Store
 .DS_Store?
 ._*
@@ -47,7 +51,7 @@ out/
 ehthumbs.db
 Thumbs.db
 
-# IDEs and editors
+# IDE and editor settings
 .vscode/
 .idea/
 *.suo
@@ -55,35 +59,23 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+*.bak
+*.tmp
+*.temp
 
-# ------------------------------------------------------------------------------
-# 🤖 AI Assistant / Auto-Generation Metadata & Logs (Clean Github Repo)
-# ------------------------------------------------------------------------------
-# Ignore all AI IDE / coding agent workspace configurations and rules
+# Local workspace configs and temporary files
 .gemini/
 .system_generated/
 .cursorrules
-.cursor/
 .clinerules
 .copilot/
 .windsurfrules
 copilot-instructions.md
 ai-instructions.md
-
-# Ignore planning documents, agent checklists, and generation logs
 brain/
 artifacts/
 scratch/
-walkthrough.md
-implementation_plan.md
 task.md
+implementation_plan.md
+walkthrough.md
 
-# Ignore instructions & rules guidelines templates
-guidelines/
-Guidelines.md
-guidelines.md
-*guidelines*
-
-# Ignore all markdown documentation and implementation plans
-*.md
-**/*.md
