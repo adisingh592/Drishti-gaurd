@@ -7,8 +7,8 @@ set "ROOT=%~dp0"
 set "BACKEND=%ROOT%backend"
 set "FRONTEND=%ROOT%front end"
 set "BACKEND_URL=http://127.0.0.1:8000/api/health"
-set "FRONTEND_URL=http://127.0.0.1:5173"
-set "APP_URL=http://127.0.0.1:5173/app/upload"
+set "FRONTEND_URL=http://localhost:5173"
+set "APP_URL=http://localhost:5173/app/upload"
 
 echo.
 echo  ============================================
@@ -44,7 +44,7 @@ if not exist "%BACKEND%\.venv\Scripts\python.exe" (
     pause
     exit /b 1
   )
-  echo [SETUP] Installing backend dependencies (first run may take several minutes)...
+  echo [SETUP] Installing backend dependencies - first run may take several minutes...
   call .venv\Scripts\pip install -r requirements.txt
   if errorlevel 1 (
     echo [ERROR] pip install failed.
@@ -58,7 +58,7 @@ where pnpm >nul 2>&1
 if errorlevel 1 (
   where npm >nul 2>&1
   if errorlevel 1 (
-    echo [ERROR] Install Node.js and pnpm (or npm) for the frontend.
+    echo [ERROR] Install Node.js and pnpm or npm for the frontend.
     pause
     exit /b 1
   )
@@ -69,7 +69,7 @@ if errorlevel 1 (
   set "FE_DEV=pnpm dev"
 )
 
-if not exist "%FRONTEND%\node_modules" (
+if not exist "%FRONTEND%\node_modules\vite" (
   echo [SETUP] Installing frontend dependencies...
   cd /d "%FRONTEND%"
   call %FE_INSTALL%
@@ -95,7 +95,7 @@ if %BACKEND_TRIES% GTR 90 (
 )
 powershell -NoProfile -Command "try { $r = Invoke-WebRequest -Uri '%BACKEND_URL%' -UseBasicParsing -TimeoutSec 3; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
 if errorlevel 1 (
-  timeout /t 2 /nobreak >nul
+  ping 127.0.0.1 -n 3 >nul
   goto wait_backend
 )
 echo       Backend is ready: %BACKEND_URL%
@@ -114,7 +114,7 @@ if %FRONTEND_TRIES% GTR 60 (
 )
 powershell -NoProfile -Command "try { $r = Invoke-WebRequest -Uri '%FRONTEND_URL%' -UseBasicParsing -TimeoutSec 3; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
 if errorlevel 1 (
-  timeout /t 2 /nobreak >nul
+  ping 127.0.0.1 -n 3 >nul
   goto wait_frontend
 )
 echo       Frontend is ready: %FRONTEND_URL%
