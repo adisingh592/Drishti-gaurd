@@ -1,0 +1,44 @@
+names:
+  0: person
+  1: gun
+  2: knife
+  3: mask
+  4: no_mask
+  5: car
+  6: motorcycle
+  7: bus
+  8: truck
+  9: fire
+  10: smoke
+
+nc: 11
+
+label_map:
+  person: 0
+  human: 0
+  pedestrian: 0
+  gun: 1
+  pistol: 1
+  handgun: 1
+  rifle: 1
+  firearm: 1
+  weapon: 1
+  knife: 2
+  blade: 2
+  mask: 3
+  face_mask: 3
+  with_mask: 3
+  masked: 3
+  no_mask: 4
+  without_mask: 4
+  no-mask: 4
+  car: 5
+  automobile: 5
+  motorcycle: 6
+  motorbike: 6
+  bus: 7
+  truck: 8
+  bicycle: 5
+  fire: 9
+  flame: 9
+  smoke: 10

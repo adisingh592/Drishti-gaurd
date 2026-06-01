@@ -27,7 +27,7 @@ out/
 *.env.local
 !.env.example
 
-# Python backend
+# Python environment and cache
 __pycache__/
 *.py[cod]
 *$py.class
@@ -39,8 +39,31 @@ env/
 .coverage
 htmlcov/
 .mypy_cache/
+.ipynb_checkpoints/
+
+# Machine Learning - Datasets and Prepared Data
+**/datasets/
+**/prepared/
 backend/data/
-backend/*.pt
+
+# Machine Learning - Model Weights and Large Exports (ONNX, TorchScript, PyTorch, etc.)
+*.pt
+*.pth
+*.onnx
+*.torchscript
+*.engine
+*.tflite
+*.pb
+*.h5
+*.keras
+*.weights
+*.pkl
+*.pickle
+*.joblib
+
+# Machine Learning - Training Runs, Logs and Validation Plots
+**/runs/
+runs/
 
 # OS files
 .DS_Store
@@ -62,6 +85,16 @@ Thumbs.db
 *.bak
 *.tmp
 *.temp
+
+# Machine Learning - Pipelines, Prep and Training Tools (Exclusions)
+ml/scripts/
+ml/drishti_ml/downloaders/
+ml/drishti_ml/prepare/
+ml/drishti_ml/budget.py
+ml/reports/
+
+# Launchers and Automation scripts
+*.bat
 
 # Local workspace configs and temporary files
 .gemini/

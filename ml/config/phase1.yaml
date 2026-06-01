@@ -1,0 +1,80 @@
+# Phase 1 — RTX 3050 6GB / 10GB total dataset budget
+max_total_gb: 10
+seed: 42
+
+split:
+  train: 0.8
+  val: 0.1
+  test: 0.1
+
+training:
+  model: yolo11m.pt
+  epochs: 100
+  imgsz: 640
+  batch: 8
+  amp: true
+  cache: true
+  device: 0
+  workers: 4
+  patience: 25
+  optimizer: AdamW
+  cos_lr: true
+
+datasets:
+  sohas_weapon:
+    enabled: true
+    max_mb: 400
+    note: "YOLO weapon repo + COCO knives; SOHAS XML-only zip skipped"
+
+  openimages_weapons:
+    enabled: false
+
+  coco_person:
+    enabled: true
+    max_mb: 1200
+    classes: [person]
+    method: coco128
+    url: https://github.com/ultralytics/assets/releases/download/v0.0.0/coco128.zip
+
+  rmfd_mask:
+    enabled: true
+    max_mb: 600
+    classes: [mask, no_mask]
+    method: github_zip
+    url: https://github.com/X-zhangyang/Real-World-Masked-Face-Dataset/archive/refs/heads/master.zip
+
+  dfire:
+    enabled: true
+    max_mb: 900
+    max_images: 800
+    classes: [fire, smoke]
+    method: github_zip
+    url: http://merlin.fit.vutbr.cz/fire/dataset-bowfire-for-tensorflow.tar.bz2
+
+  crowdhuman:
+    enabled: true
+    max_mb: 1500
+    classes: [person]
+    method: sample_images
+    max_images: 2500
+    url: https://github.com/ultralytics/assets/releases/download/v0.0.0/coco128.zip
+    note: "Uses COCO128 person expansion if CrowdHuman bulk download unavailable"
+
+  bdd100k_vehicles:
+    enabled: true
+    max_mb: 1200
+    classes: [car, motorcycle, bus, truck]
+    method: bdd_sample
+    max_images: 2000
+    url: https://bdd-data.berkeley.edu/bdd100k/data/100k_images_val.zip
+
+  rwf2000:
+    enabled: false
+    note: "Official RWF-2000 videos unavailable (privacy); not in 11-class YOLO head"
+
+paths:
+  raw: datasets/raw
+  prepared: prepared/drishti_phase1
+  models: models/phase1
+  runs: runs/phase1
+  reports: reports/phase1
