@@ -86,29 +86,18 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Machine Learning - Pipelines, Prep and Training Tools (Exclusions)
-ml/scripts/
-ml/drishti_ml/downloaders/
-ml/drishti_ml/prepare/
-ml/drishti_ml/budget.py
-ml/reports/
+# Application uploads and reports
+uploads/*
+!uploads/.gitkeep
+reports/*
+!reports/.gitkeep
+ml/reports/*
+!ml/reports/.gitkeep
 
-# Launchers and Automation scripts
-*.bat
+# Model weights and exports folders
+**/weights/
+**/exports/
 
-# Local workspace configs and temporary files
-.gemini/
-.system_generated/
-.cursorrules
-.clinerules
-.copilot/
-.windsurfrules
-copilot-instructions.md
-ai-instructions.md
-brain/
-artifacts/
-scratch/
-task.md
-implementation_plan.md
-walkthrough.md
+# Training checkpoints and progress files
+ai_models/checkpoints/bcd_progress.json
 

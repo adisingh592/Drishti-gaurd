@@ -29,6 +29,9 @@ class Settings(BaseSettings):
     confidence_threshold: float = 0.45
     use_gpu: bool = True
     simulation_mode: bool = False
+    use_master_engine: bool = True
+    ai_models_root: str = "../ai_models"
+    model_a_weights: str = "../ai_models/Model_A_SecurityThreats/weights/best.pt"
     max_tracking_frames: int = 40
     max_cached_frames: int = 80
 

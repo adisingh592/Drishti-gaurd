@@ -35,13 +35,46 @@ def generate_threat_events(
     events: list[ThreatTimelineEvent] = []
     seen: set[tuple[str, int]] = set()
 
-    threat_classes = WEAPON_CLASSES | {"masked person", "abandoned object", "knife", "gun", "pistol", "rifle"}
+    threat_classes = WEAPON_CLASSES | {
+        "masked person",
+        "abandoned object",
+        "knife",
+        "gun",
+        "handgun",
+        "pistol",
+        "rifle",
+        "fire",
+        "smoke",
+        "violence",
+        "fighting",
+        "dense_crowd",
+        "overcrowding",
+        "no_mask",
+        "accident",
+    }
+
+    named_threats = {
+        "Handgun",
+        "Gun",
+        "Pistol",
+        "Rifle",
+        "Knife",
+        "Weapon",
+        "Fire",
+        "Smoke",
+        "Violence",
+        "Fighting",
+        "Dense_Crowd",
+        "Overcrowding",
+        "No_Mask",
+        "Masked Person",
+        "Abandoned Object",
+        "Accident",
+    }
 
     for d in detections:
         cls_lower = d.class_name.lower()
-        is_threat = any(t in cls_lower for t in threat_classes) or d.class_name in (
-            "Gun", "Pistol", "Rifle", "Knife", "Masked Person", "Abandoned Object", "Weapon"
-        )
+        is_threat = any(t in cls_lower for t in threat_classes) or d.class_name in named_threats
         if not is_threat:
             continue
         bucket = int(d.timestamp_seconds // 2)

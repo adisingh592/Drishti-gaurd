@@ -22,12 +22,12 @@ WEAPON_PROMPTS = [
 
 # Map open-vocab labels -> Drishti taxonomy
 WEAPON_LABEL_MAP = {
-    "gun": "Gun",
-    "handgun": "Pistol",
-    "pistol": "Pistol",
+    "gun": "Handgun",
+    "handgun": "Handgun",
+    "pistol": "Handgun",
     "rifle": "Rifle",
-    "firearm": "Gun",
-    "weapon": "Weapon",
+    "firearm": "Handgun",
+    "weapon": "Handgun",
     "knife": "Knife",
     "shotgun": "Rifle",
 }

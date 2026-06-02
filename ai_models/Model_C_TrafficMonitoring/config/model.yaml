@@ -1,0 +1,25 @@
+name: Model_C_TrafficMonitoring
+status: pending_training
+model_architecture: yolo11s
+imgsz: 640
+epochs: 100
+amp: true
+
+classes:
+  - Vehicle
+  - Motorcycle
+  - Bicycle
+  - Bus
+  - Truck
+  - Accident
+  - Rash_Driving
+  - Wrong_Direction
+
+datasets:
+  - BDD100K
+  - UA-DETRAC
+  - AI City Challenge
+  - CADP
+  - Road Accident Detection
+
+fallback: model_a_vehicles_plus_tracker

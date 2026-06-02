@@ -1,0 +1,30 @@
+name: Model_B_CrowdBehavior
+status: pending_training
+model_architecture: yolo11s
+imgsz: 640
+epochs: 100
+amp: true
+cache: disk
+batch: auto
+
+classes:
+  - Crowd
+  - Dense_Crowd
+  - Overcrowding
+  - Fighting
+  - Violence
+
+datasets:
+  crowd_density:
+    - ShanghaiTech
+    - UCF-QNRF
+    - NWPU-Crowd
+    - JHU-CROWD++
+    - WorldExpo10
+  violence:
+    - RWF-2000
+    - Hockey Fight
+    - Real Life Violence Situations
+
+# Until weights exist, Master Engine uses person-count heuristics
+fallback: heuristic_crowd

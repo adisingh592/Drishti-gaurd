@@ -2,19 +2,32 @@
 
 # Weights for risk scoring (user spec)
 THREAT_WEIGHTS: dict[str, int] = {
-    "Gun": 80,
-    "Pistol": 80,
-    "Rifle": 80,
+    "Handgun": 85,
+    "Gun": 85,
+    "Pistol": 85,
+    "Rifle": 85,
     "Knife": 50,
-    "Weapon": 80,
+    "Weapon": 85,
+    "Fire": 90,
+    "Smoke": 35,
+    "Violence": 70,
+    "Fighting": 65,
+    "Accident": 85,
+    "Dense_Crowd": 45,
+    "Overcrowding": 55,
+    "Crowd": 25,
+    "No_Mask": 30,
+    "No_Helmet": 35,
     "Masked Person": 20,
+    "Mask": 10,
     "Crowd Density Warning": 25,
     "Crowd Density Critical": 50,
     "Rash Driving": 40,
+    "Rash_Driving": 40,
     "Wrong-Side Driving": 45,
+    "Wrong_Direction": 45,
     "Abandoned Object": 35,
     "Intrusion": 50,
-    "Violence": 60,
     "Overspeeding": 40,
     "Zig-Zag Driving": 40,
     "Sudden Direction Change": 35,
@@ -44,10 +57,19 @@ COCO_TO_DRISHTI: dict[str, str] = {
 
 # Custom surveillance model aliases (when using fine-tuned weights)
 CUSTOM_ALIASES: dict[str, str] = {
-    "gun": "Gun",
-    "pistol": "Pistol",
+    "gun": "Handgun",
+    "handgun": "Handgun",
+    "pistol": "Handgun",
     "rifle": "Rifle",
     "knife": "Knife",
+    "fire": "Fire",
+    "smoke": "Smoke",
+    "mask": "Mask",
+    "no_mask": "No_Mask",
+    "dense_crowd": "Dense_Crowd",
+    "overcrowding": "Overcrowding",
+    "fighting": "Fighting",
+    "violence": "Violence",
     "masked person": "Masked Person",
     "masked_person": "Masked Person",
     "abandoned object": "Abandoned Object",
@@ -80,13 +102,13 @@ def severity_for_threat(threat_type: str, confidence: float) -> str:
 
 
 def risk_level_label(score: int) -> str:
-    if score <= 30:
-        return "SAFE"
-    if score <= 60:
-        return "WARNING"
-    if score <= 85:
-        return "HIGH ALERT"
-    return "CRITICAL"
+    if score <= 25:
+        return "Safe"
+    if score <= 50:
+        return "Moderate Risk"
+    if score <= 75:
+        return "High Risk"
+    return "Critical Risk"
 
 
 def crowd_density_level(count: int) -> str:

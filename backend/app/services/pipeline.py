@@ -37,7 +37,13 @@ _weapon_detector: Optional[WeaponDetector] = None
 def get_detector() -> YOLODetector:
     global _detector
     if _detector is None:
-        _detector = YOLODetector()
+        settings = get_settings()
+        if settings.use_master_engine and not settings.simulation_mode:
+            from app.services.master_detection_adapter import MasterDetectionAdapter
+
+            _detector = MasterDetectionAdapter()  # type: ignore[assignment]
+        else:
+            _detector = YOLODetector()
     return _detector
 
 
@@ -157,6 +163,7 @@ async def run_analysis_pipeline(
     cap.release()
     all_detections.extend(tracked)
 
+    await _update_progress(upload_id, 62, "master_engine", "Master engine merge (Models A–D)")
     await _update_progress(upload_id, 65, "weapon_scan", "Scanning for weapons (YOLO-World)")
     await _update_progress(upload_id, 68, "threat_detection", "Generating threat events")
     crowd_stats = analyze_crowd(all_detections, fps)

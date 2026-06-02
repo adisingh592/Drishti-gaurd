@@ -1,0 +1,24 @@
+# Model A — Phase 1 security threats (FROZEN — do not retrain)
+name: Model_A_SecurityThreats
+status: trained
+phase: 1
+source_weights: ../../../ml/models/phase1/best.pt
+
+model_architecture: yolo11m
+inference_only: true
+retrain: false
+
+# Phase 1 class indices in best.pt
+class_ids: [0, 1, 2, 5, 6, 7, 8]
+
+names:
+  0: Person
+  1: Handgun
+  2: Knife
+  5: Vehicle
+  6: Motorcycle
+  7: Bus
+  8: Truck
+
+# YOLO-World remains primary for handgun/rifle disambiguation (backend weapon scan)
+weapon_scan_required: true

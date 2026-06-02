@@ -1,0 +1,33 @@
+name: Model_D_SafetyMonitoring
+status: fallback_phase1
+model_architecture: yolo11s
+imgsz: 640
+epochs: 100
+amp: true
+
+# Phase 1 indices until dedicated D weights are trained
+class_ids: [3, 4, 9, 10]
+
+names:
+  3: Mask
+  4: No_Mask
+  9: Fire
+  10: Smoke
+
+# Future dedicated classes
+future_classes:
+  - Helmet
+  - No_Helmet
+
+datasets:
+  helmet:
+    - SHWD
+    - Hard Hat Workers
+  mask:
+    - Face Mask Detection
+  fire:
+    - D-Fire
+    - FireNet
+    - Fire and Smoke
+
+fallback_weights: shared_phase1_filter

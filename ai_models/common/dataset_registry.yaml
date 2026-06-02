@@ -1,0 +1,93 @@
+# Phase 1 datasets (ml/config/phase1.yaml) — SKIP re-download for B/C/D
+phase1_used:
+  - coco128
+  - coco_person
+  - crowdhuman_coco_fallback
+  - rmfd_mask
+  - dfire_bowfire
+  - sohas_weapon
+  - openimages_weapons
+  - alon_gun_detection
+  - bdd100k_coco_fallback
+  - rwf2000
+
+model_a:
+  status: frozen
+  weights: Model_A_SecurityThreats/weights/best.pt
+  note: Do not retrain
+
+model_b:
+  classes: [Crowd, Dense_Crowd, Overcrowding, Fighting, Violence]
+  datasets:
+    - key: shanghaitech
+      skip_phase1: false
+      skip_reason: not_in_phase1
+      status: manual_dropbox
+    - key: ucf_qnrf
+      skip_phase1: false
+      status: manual
+    - key: crowdhuman_full
+      skip_phase1: true
+      skip_reason: phase1_used_coco128_instead
+    - key: rwf2000
+      skip_phase1: true
+      skip_reason: phase1_disabled_unavailable
+    - key: hockey_fights
+      skip_phase1: false
+      status: url_404
+    - key: mall_crowd
+      skip_phase1: false
+      enabled: true
+      url: https://personal.ie.cuhk.edu.hk/~ccloy/files/datasets/mall_dataset.zip
+    - key: godseye_violence
+      skip_phase1: false
+      enabled: false
+      note: "Enable manually — large HF download; mall_crowd provides crowd classes"
+      hf_repo: valiantlynxz/godseye-violence-detection-dataset
+      max_videos: 80
+
+model_c:
+  classes: [Vehicle, Motorcycle, Bicycle, Bus, Truck, Accident, Rash_Driving, Wrong_Direction]
+  datasets:
+    - key: bdd100k
+      skip_phase1: true
+      skip_reason: phase1_attempted_use_libre_and_aaic
+    - key: ua_detrac
+      skip_phase1: false
+      status: manual_registration
+    - key: libre_road_traffic
+      skip_phase1: false
+      enabled: true
+      hf_repo: LibreYOLO/road-traffic
+    - key: aaic_iran
+      skip_phase1: false
+      enabled: true
+      url: https://github.com/HooshDrive/AAICDataset/archive/refs/heads/main.zip
+
+model_d:
+  classes: [Helmet, No_Helmet, Mask, No_Mask, Fire, Smoke]
+  datasets:
+    - key: dfire
+      skip_phase1: true
+      skip_reason: phase1_bowfire
+    - key: rmfd_mask
+      skip_phase1: true
+      skip_reason: phase1_rmfd
+    - key: firenet
+      skip_phase1: false
+      status: pending_url
+    - key: shwd_helmet
+      skip_phase1: false
+      enabled: true
+      gdrive_id: 1qWm7rrwvjAWs1slymbrLaCf7Q-wnGLEX
+
+training_defaults:
+  model: yolo11s.pt
+  epochs: 100
+  imgsz: 640
+  amp: true
+  cache: false
+  workers: 0
+  batch: 4
+  patience: 25
+  device: 0
