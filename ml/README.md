@@ -47,8 +47,6 @@ python scripts/validate.py
 python scripts/export.py
 ```
 
-Or run everything: **`run_phase1.bat`**
-
 ## Training (RTX 3050)
 
 | Setting | Value |

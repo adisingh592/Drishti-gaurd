@@ -19,12 +19,6 @@ Train separately when ready (YOLOv11s). Until `weights/best.pt` exists:
 
 ## Setup
 
-```bat
-setup-ai-models.bat
-```
-
-Or:
-
 ```bash
 python -m ai_models.setup_models
 ```

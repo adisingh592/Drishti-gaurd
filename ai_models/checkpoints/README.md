@@ -18,7 +18,7 @@ Phase 1 datasets are **not** re-downloaded for B/C/D (see `phase1_skip_datasets`
 When you are ready, either:
 
 1. Tell the assistant: **"resume"**, or  
-2. Run **`resume-bcd-training.bat`** at the repo root.
+2. From `ml/` (with its venv active), run **`python ../ai_models/scripts/resume_bcd_from_checkpoint.py`**.
 
 That runs `ai_models/scripts/resume_bcd_from_checkpoint.py`, which:
 

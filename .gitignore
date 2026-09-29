@@ -182,3 +182,14 @@ desktop.ini
 .gemini/
 .cursor/
 .system_generated/
+
+# ------------------------------------------------------------------------------
+# Local-only helpers & unused code (kept on disk, not pushed)
+# ------------------------------------------------------------------------------
+# Windows launcher / training scripts
+*.bat
+*.cmd
+
+# Unused design-export components (never imported; deps not installed)
+front end/src/app/components/ui/
+front end/src/app/components/figma/

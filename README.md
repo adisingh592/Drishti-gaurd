@@ -26,8 +26,7 @@ AI-powered surveillance that spots weapons, crowd risks and safety hazards in CC
 - [What it does](#what-it-does)
 - [Architecture](#architecture)
 - [Repository layout](#repository-layout)
-- [Quick start (Windows)](#quick-start-windows)
-- [Manual setup](#manual-setup)
+- [Getting started](#getting-started)
 - [Configuration](#configuration)
 - [API reference](#api-reference)
 - [AI models](#ai-models)
@@ -100,7 +99,7 @@ Drishti gaurd/
 │       ├── app/
 │       │   ├── layouts/RootLayout.tsx     # sidebar + top bar shell
 │       │   ├── pages/                     # Dashboard, LiveDetection, UploadAnalyze, …
-│       │   ├── components/                # BrandMark, ThemeToggle, ui/ primitives
+│       │   ├── components/                # BrandMark, ThemeToggle, module wheel
 │       │   └── hooks/useBackendHealth.ts  # polls /api/health
 │       ├── services/api.ts                # typed client for the FastAPI backend
 │       └── styles/theme.css               # design tokens (olive theme)
@@ -115,30 +114,16 @@ Drishti gaurd/
 │   ├── Model_D_SafetyMonitoring/
 │   └── MasterDetectionEngine/
 ├── ml/                        # Phase 1 dataset + training pipeline (see ml/README.md)
-├── docs/                      # architecture notes, screenshots
-├── start-drishti.bat          # one-click launcher (backend + frontend)
-├── setup-ai-models.bat        # copies Phase 1 weights into Model A
-└── run-models-bcd.bat         # dataset audit + train Models B/C/D
+└── docs/                      # architecture notes, screenshots
 ```
 
 ---
 
-## Quick start (Windows)
+## Getting started
 
 **Prerequisites:** Python 3.10+, Node.js 18+ (with `pnpm` or `npm`), and optionally an NVIDIA GPU with CUDA.
 
-```bat
-start-drishti.bat
-```
-
-The launcher:
-
-1. creates `backend\.venv` and installs Python requirements on first run
-2. installs frontend dependencies on first run
-3. starts FastAPI on **http://127.0.0.1:8000** and waits for `/api/health`
-4. starts Vite on **http://localhost:5173** and opens the Upload page
-
-Keep both terminal windows open while you use the app.
+Run the backend and the frontend in two terminals, then open the app:
 
 | URL | What |
 |---|---|
@@ -146,10 +131,6 @@ Keep both terminal windows open while you use the app.
 | http://localhost:5173/app | Dashboard |
 | http://localhost:5173/app/upload | Upload & Analyze |
 | http://127.0.0.1:8000/docs | Interactive API docs (Swagger) |
-
----
-
-## Manual setup
 
 ### 1. Backend
 
@@ -166,9 +147,7 @@ python run.py
 
 Copy the trained Phase 1 weights into Model A. This never overwrites existing weights.
 
-```bat
-setup-ai-models.bat
-:: or
+```bash
 python -m ai_models.setup_models
 ```
 
@@ -256,7 +235,7 @@ curl http://127.0.0.1:8000/api/analyze/<upload_id>/progress
 | **D: Safety Monitoring** | Fire, smoke, masks | ⏳ Phase 1 class filter | Fire, Smoke, Mask, No_Mask |
 
 - Model A weights live at `ai_models/Model_A_SecurityThreats/weights/best.pt`. **Do not retrain or overwrite them.**
-- To train Models B, C and D once their datasets are ready, run `run-models-bcd.bat`.
+- To train Models B, C and D once their datasets are ready, run `python ai_models/scripts/audit_datasets.py` and then `python ai_models/scripts/run_bcd_pipeline.py --model all` from the `ml/` virtual environment.
 - Threat priority: Handgun, Rifle, Fire, Accident and Violence are **critical**. Knife, Fighting and Overcrowding are **high**. Smoke and mask violations are **medium**.
 
 See [ai_models/README.md](ai_models/README.md) for more detail.
@@ -279,7 +258,7 @@ python scripts/validate.py       # mAP50 / mAP50-95 / P / R → reports/phase1/m
 python scripts/export.py         # ONNX + TorchScript
 ```
 
-Or run the whole pipeline with `ml\run_phase1.bat`. Full details are in [ml/README.md](ml/README.md).
+Full details are in [ml/README.md](ml/README.md).
 
 ---
 
@@ -342,7 +321,7 @@ All tokens are defined in [`front end/src/styles/theme.css`](front%20end/src/sty
 | CORS errors in the browser | Add your frontend origin to `CORS_ORIGINS` in `backend/.env` |
 | `CUDA out of memory` | Lower `BATCH_SIZE`, or set `DEVICE=cpu` / `USE_GPU=false` |
 | No weapons detected | Keep `ENABLE_WEAPON_SCAN=true` and check that `WEAPON_WORLD_MODEL` downloaded |
-| Model A weights missing | Run `setup-ai-models.bat` after Phase 1 training |
+| Model A weights missing | Run `python -m ai_models.setup_models` after Phase 1 training |
 | Testing the API/UI without model weights | Set `SIMULATION_MODE=true` in `backend/.env` |
 
 ---
