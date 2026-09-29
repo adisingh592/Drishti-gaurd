@@ -28,12 +28,12 @@ function CameraFeed({ cam, large }: { cam: typeof cameras[0]; large?: boolean })
 
   return (
     <div className={`relative rounded-lg overflow-hidden transition-all ${large ? 'col-span-2 row-span-2' : ''}`}
-      style={{ border: isThreat ? '1px solid rgba(239,68,68,0.5)' : isAlert ? '1px solid rgba(249,115,22,0.4)' : '1px solid rgba(0,245,255,0.15)',
+      style={{ border: isThreat ? '1px solid rgba(239,68,68,0.5)' : isAlert ? '1px solid rgba(249,115,22,0.4)' : '1px solid rgba(143,163,74,0.15)',
         boxShadow: isThreat ? '0 0 15px rgba(239,68,68,0.2)' : isAlert ? '0 0 10px rgba(249,115,22,0.15)' : 'none' }}>
       <div className={`relative overflow-hidden ${large ? 'aspect-video' : 'aspect-video'}`}
-        style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', minHeight: large ? '280px' : '160px' }}>
+        style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', minHeight: large ? '280px' : '160px' }}>
         {/* Grid overlay */}
-        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.02) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.02) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
         {/* Scan line */}
         <div className="absolute inset-0 overflow-hidden">
           <div className={`absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent ${isThreat ? 'via-red-500/80' : 'via-cyan-400/50'} to-transparent`}
@@ -73,7 +73,7 @@ function CameraFeed({ cam, large }: { cam: typeof cameras[0]; large?: boolean })
         <div className={`absolute bottom-6 left-1 w-4 h-4 border-b-2 border-l-2 ${isThreat ? 'border-red-400/60' : 'border-cyan-400/40'}`} />
         <div className={`absolute bottom-6 right-1 w-4 h-4 border-b-2 border-r-2 ${isThreat ? 'border-red-400/60' : 'border-cyan-400/40'}`} />
         {/* Status bar */}
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 py-1" style={{ background: 'rgba(2,8,20,0.9)' }}>
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 py-1" style={{ background: 'rgba(20,22,15,0.9)' }}>
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-mono text-gray-500">{cam.id}</span>
             <span className="text-[10px] text-gray-600 hidden sm:inline">{cam.name}</span>
@@ -157,9 +157,9 @@ export function LiveDetectionPage() {
               <div className="relative w-40 h-40 mx-auto">
                 {[1,2,3].map(i => <div key={i} className="absolute inset-0 rounded-full border border-cyan-500/20" style={{ margin: `${(3-i)*15}px` }} />)}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,245,255,0.8)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(143,163,74,0.8)]" />
                 </div>
-                <div className="absolute inset-0 rounded-full overflow-hidden" style={{ background: 'conic-gradient(from 0deg, rgba(0,245,255,0.25), transparent 60%)' }}>
+                <div className="absolute inset-0 rounded-full overflow-hidden" style={{ background: 'conic-gradient(from 0deg, rgba(143,163,74,0.25), transparent 60%)' }}>
                   <div className="w-full h-full animate-radar" />
                 </div>
                 <div className="absolute top-6 left-10 w-2 h-2 rounded-full bg-red-400 animate-ping" style={{ animationDuration: '1.5s' }} />

@@ -16,9 +16,9 @@ function RadarAnimation() {
         <div key={i} className="absolute inset-0 rounded-full border border-cyan-500/20" style={{ margin: `${(4-i)*11}px` }} />
       ))}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(0,245,255,0.8)]" />
+        <div className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(143,163,74,0.8)]" />
       </div>
-      <div className="absolute inset-0 rounded-full overflow-hidden" style={{ background: 'conic-gradient(from 0deg, rgba(0,245,255,0.3), transparent 60%)' }}>
+      <div className="absolute inset-0 rounded-full overflow-hidden" style={{ background: 'conic-gradient(from 0deg, rgba(143,163,74,0.3), transparent 60%)' }}>
         <div className="w-full h-full animate-radar" />
       </div>
       <div className="absolute top-8 left-14 w-2 h-2 rounded-full bg-red-400 animate-ping" style={{ animationDuration: '1.5s' }} />
@@ -30,7 +30,7 @@ function RadarAnimation() {
 function CameraFeed({ label, threat }: { label: string; threat?: boolean }) {
   return (
     <div className={`relative rounded-lg overflow-hidden ${threat ? 'border border-red-500/40 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : 'border border-cyan-500/20'}`}>
-      <div className="aspect-video relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)' }}>
+      <div className="aspect-video relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)' }}>
         <div className="absolute inset-0 grid-bg opacity-50" />
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" style={{ animation: 'scanLine 2s linear infinite' }} />
@@ -55,7 +55,7 @@ function CameraFeed({ label, threat }: { label: string; threat?: boolean }) {
         <div className="absolute bottom-1 left-1 w-4 h-4 border-b-2 border-l-2 border-cyan-400/60" />
         <div className="absolute bottom-1 right-1 w-4 h-4 border-b-2 border-r-2 border-cyan-400/60" />
       </div>
-      <div className="flex items-center justify-between px-2 py-1 bg-[#050d1a]/80 border-t border-cyan-500/10">
+      <div className="flex items-center justify-between px-2 py-1 bg-[#1a1c14]/80 border-t border-cyan-500/10">
         <span className="text-[10px] font-mono text-gray-500">{label}</span>
         <div className="flex items-center gap-1">
           <div className={`w-1.5 h-1.5 rounded-full ${threat ? 'bg-red-400 animate-ping' : 'bg-emerald-400'}`} />
@@ -85,10 +85,10 @@ export default function Hero() {
 
   return (
     <section id="home" ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 transition-colors duration-500" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(0,245,255,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(14,165,233,0.06) 0%, transparent 60%), var(--background)' }} />
+      <div className="absolute inset-0 transition-colors duration-500" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(143,163,74,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(107,129,50,0.06) 0%, transparent 60%), var(--background)' }} />
       <div className="absolute inset-0 grid-bg" />
       <div className="absolute inset-0 pointer-events-none transition-transform duration-700"
-        style={{ background: `radial-gradient(600px circle at ${50 + mousePos.x * 0.5}% ${50 + mousePos.y * 0.5}%, rgba(0,245,255,0.04), transparent 50%)` }} />
+        style={{ background: `radial-gradient(600px circle at ${50 + mousePos.x * 0.5}% ${50 + mousePos.y * 0.5}%, rgba(143,163,74,0.04), transparent 50%)` }} />
 
       {mounted && [
         { top: '15%', left: '10%', s: 8, d: '0s' }, { top: '25%', left: '85%', s: 12, d: '1s' },
@@ -96,7 +96,7 @@ export default function Hero() {
         { top: '40%', left: '92%', s: 6, d: '1.5s' }, { top: '80%', left: '15%', s: 10, d: '3s' },
       ].map((p, i) => (
         <div key={i} className="absolute rounded-full bg-cyan-400 opacity-60 pointer-events-none"
-          style={{ top: p.top, left: p.left, width: `${p.s}px`, height: `${p.s}px`, animation: `float 6s ease-in-out ${p.d} infinite`, filter: 'blur(1px)', boxShadow: '0 0 8px rgba(0,245,255,0.5)' }} />
+          style={{ top: p.top, left: p.left, width: `${p.s}px`, height: `${p.s}px`, animation: `float 6s ease-in-out ${p.d} infinite`, filter: 'blur(1px)', boxShadow: '0 0 8px rgba(143,163,74,0.5)' }} />
       ))}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
@@ -194,7 +194,7 @@ export default function Hero() {
                 <div className="text-center"><div className="text-xs font-mono text-cyan-400">12</div><div className="text-xs text-gray-600">Tracked</div></div>
               </div>
             </div>
-            <div className="absolute inset-0 -z-10 blur-3xl" style={{ background: 'radial-gradient(ellipse, rgba(0,245,255,0.08) 0%, transparent 70%)' }} />
+            <div className="absolute inset-0 -z-10 blur-3xl" style={{ background: 'radial-gradient(ellipse, rgba(143,163,74,0.08) 0%, transparent 70%)' }} />
           </div>
         </div>
       </div>

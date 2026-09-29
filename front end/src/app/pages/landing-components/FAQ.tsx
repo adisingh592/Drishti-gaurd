@@ -25,7 +25,7 @@ export default function FAQ() {
 
   return (
     <section ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(0,245,255,0.03), transparent 50%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(143,163,74,0.03), transparent 50%)' }} />
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">

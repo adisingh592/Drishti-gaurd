@@ -18,9 +18,9 @@ const stats = [
 
 function PulsingFeed({ threat, label }: { threat?: boolean; label: string }) {
   return (
-    <div className={`relative rounded-lg overflow-hidden`} style={{ border: threat ? '1px solid rgba(239,68,68,0.5)' : '1px solid rgba(0,245,255,0.2)', boxShadow: threat ? '0 0 15px rgba(239,68,68,0.2)' : '0 0 10px rgba(0,245,255,0.05)' }}>
-      <div className="w-full h-full min-h-[120px] relative overflow-hidden rounded-lg" style={{ background: 'linear-gradient(135deg, #071222, #0a192f)' }}>
-        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.02) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+    <div className={`relative rounded-lg overflow-hidden`} style={{ border: threat ? '1px solid rgba(239,68,68,0.5)' : '1px solid rgba(143,163,74,0.2)', boxShadow: threat ? '0 0 15px rgba(239,68,68,0.2)' : '0 0 10px rgba(143,163,74,0.05)' }}>
+      <div className="w-full h-full min-h-[120px] relative overflow-hidden rounded-lg" style={{ background: 'linear-gradient(135deg, #23261b, #1f2218)' }}>
+        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.02) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
         <div className="absolute inset-0 overflow-hidden">
           <div className={`absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent ${threat ? 'via-red-500/80' : 'via-cyan-400/60'} to-transparent`}
             style={{ animation: `scanLine ${threat ? '1.5' : '2.5'}s linear infinite` }} />
@@ -45,7 +45,7 @@ function PulsingFeed({ threat, label }: { threat?: boolean; label: string }) {
         <div className={`absolute top-1 right-1 w-4 h-4 border-t-2 border-r-2 ${threat ? 'border-red-400/60' : 'border-cyan-400/40'}`} />
         <div className={`absolute bottom-1 left-1 w-4 h-4 border-b-2 border-l-2 ${threat ? 'border-red-400/60' : 'border-cyan-400/40'}`} />
         <div className={`absolute bottom-1 right-1 w-4 h-4 border-b-2 border-r-2 ${threat ? 'border-red-400/60' : 'border-cyan-400/40'}`} />
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 py-1" style={{ background: 'rgba(2,8,20,0.8)' }}>
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 py-1" style={{ background: 'rgba(20,22,15,0.8)' }}>
           <span className="text-xs font-mono text-gray-500">{label}</span>
           <span className={`text-xs font-mono ${threat ? 'text-red-400 animate-blink' : 'text-emerald-400'}`}>● {threat ? 'ALERT' : 'LIVE'}</span>
         </div>
@@ -72,7 +72,7 @@ export default function LiveDetection() {
 
   return (
     <section id="live-detection" ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 80% 50%, rgba(14,165,233,0.05), transparent 60%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 80% 50%, rgba(107,129,50,0.05), transparent 60%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">

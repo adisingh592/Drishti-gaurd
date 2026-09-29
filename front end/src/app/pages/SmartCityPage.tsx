@@ -31,9 +31,9 @@ export function SmartCityPage() {
             <div className="flex items-center gap-2"><Globe className="w-4 h-4 text-cyan-400" /><span className="text-sm font-mono text-cyan-400">CITY MAP OVERVIEW</span></div>
             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" /><span className="text-xs font-mono text-gray-500">LIVE</span></div>
           </div>
-          <div className="relative rounded-xl overflow-hidden p-6" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', border: '1px solid rgba(0,245,255,0.15)', minHeight: '400px' }}>
+          <div className="relative rounded-xl overflow-hidden p-6" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', border: '1px solid rgba(143,163,74,0.15)', minHeight: '400px' }}>
             {/* Grid */}
-            <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
             {/* Zone indicators */}
             {[
@@ -45,7 +45,7 @@ export function SmartCityPage() {
             ].map(zone => (
               <div key={zone.name} className="absolute" style={{ top: zone.top, left: zone.left }}>
                 <div className={`relative w-12 h-12 rounded-full ${zone.threat ? 'bg-red-500/20 border-2 border-red-400/50' : 'bg-cyan-500/10 border-2 border-cyan-400/30'} flex items-center justify-center`}
-                  style={{ boxShadow: zone.threat ? '0 0 20px rgba(239,68,68,0.3)' : '0 0 10px rgba(0,245,255,0.2)' }}>
+                  style={{ boxShadow: zone.threat ? '0 0 20px rgba(239,68,68,0.3)' : '0 0 10px rgba(143,163,74,0.2)' }}>
                   <span className={`text-sm font-bold ${zone.threat ? 'text-red-400' : 'text-cyan-400'}`}>{zone.name}</span>
                   {zone.threat && <div className="absolute inset-0 rounded-full border-2 border-red-400/40 animate-ping" style={{ animationDuration: '2s' }} />}
                 </div>
@@ -64,7 +64,7 @@ export function SmartCityPage() {
               { top: '60%', left: '70%' }, { top: '75%', left: '50%' }, { top: '30%', left: '45%' },
               { top: '45%', left: '20%' }, { top: '65%', left: '60%' },
             ].map((cam, i) => (
-              <div key={i} className="absolute w-1.5 h-1.5 rounded-full bg-cyan-400/60" style={{ top: cam.top, left: cam.left, boxShadow: '0 0 4px rgba(0,245,255,0.4)' }} />
+              <div key={i} className="absolute w-1.5 h-1.5 rounded-full bg-cyan-400/60" style={{ top: cam.top, left: cam.left, boxShadow: '0 0 4px rgba(143,163,74,0.4)' }} />
             ))}
 
             {/* Legend */}

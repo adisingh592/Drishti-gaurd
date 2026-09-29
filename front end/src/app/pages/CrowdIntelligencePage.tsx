@@ -22,7 +22,7 @@ function getHeatColor(v: number) {
   if (v >= 60) return `rgba(249,115,22,${v/100*0.85})`;
   if (v >= 40) return `rgba(234,179,8,${v/100*0.8})`;
   if (v >= 20) return `rgba(34,211,238,${v/100*0.7})`;
-  return `rgba(0,245,255,${Math.max(0.05, v/100*0.4)})`;
+  return `rgba(143,163,74,${Math.max(0.05, v/100*0.4)})`;
 }
 
 export function CrowdIntelligencePage() {
@@ -53,7 +53,7 @@ export function CrowdIntelligencePage() {
             <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-cyan-400" /><span className="text-sm font-mono text-cyan-400">CROWD HEATMAP</span></div>
             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" /><span className="text-xs text-gray-500 font-mono">LIVE</span></div>
           </div>
-          <div className="rounded-xl p-3" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', border: '1px solid rgba(0,245,255,0.15)' }}>
+          <div className="rounded-xl p-3" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', border: '1px solid rgba(143,163,74,0.15)' }}>
             <div className="grid gap-1" style={{ gridTemplateRows: 'repeat(8, 1fr)', gridTemplateColumns: 'repeat(10, 1fr)' }}>
               {heatmapData.map((row, ri) => row.map((cell, ci) => (
                 <div key={`${ri}-${ci}`} className="rounded-sm" style={{ height: '28px', background: getHeatColor(cell), boxShadow: cell >= 80 ? '0 0 6px rgba(239,68,68,0.4)' : 'none' }} />
@@ -62,7 +62,7 @@ export function CrowdIntelligencePage() {
             <div className="absolute top-3 left-3"><div className="text-xs font-mono text-red-400 bg-red-900/50 px-2 py-0.5 rounded border border-red-500/30">ZONE_A: CRITICAL</div></div>
             <div className="flex justify-between mt-2">
               <span className="text-xs text-gray-600 font-mono">LOW</span>
-              <div className="flex gap-0.5">{['rgba(0,245,255,0.3)','rgba(234,179,8,0.5)','rgba(249,115,22,0.6)','rgba(239,68,68,0.8)'].map((c,i) => (<div key={i} className="w-8 h-2.5 rounded-sm" style={{ background: c }} />))}</div>
+              <div className="flex gap-0.5">{['rgba(143,163,74,0.3)','rgba(234,179,8,0.5)','rgba(249,115,22,0.6)','rgba(239,68,68,0.8)'].map((c,i) => (<div key={i} className="w-8 h-2.5 rounded-sm" style={{ background: c }} />))}</div>
               <span className="text-xs text-gray-600 font-mono">HIGH</span>
             </div>
           </div>
@@ -71,8 +71,8 @@ export function CrowdIntelligencePage() {
           <div className="mt-4">
             <div className="flex items-center justify-between mb-2"><span className="text-xs font-mono text-gray-500">CROWD FLOW (LAST 12 MIN)</span><TrendingUp className="w-3.5 h-3.5 text-cyan-400" /></div>
             <svg width="100%" viewBox="0 0 280 80" className="overflow-visible">
-              <defs><linearGradient id="cfGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(0,245,255,0.3)" /><stop offset="100%" stopColor="rgba(0,245,255,0.01)" /></linearGradient></defs>
-              {(() => { const sx = 280/(flowData.length-1); const d = flowData.map((p,i) => `${i===0?'M':'L'} ${i*sx} ${80-(p/100)*80}`).join(' '); return (<><path d={d + ` L 280 80 L 0 80 Z`} fill="url(#cfGrad)" /><path d={d} fill="none" stroke="#00f5ff" strokeWidth="2" strokeLinecap="round" /></>); })()}
+              <defs><linearGradient id="cfGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(143,163,74,0.3)" /><stop offset="100%" stopColor="rgba(143,163,74,0.01)" /></linearGradient></defs>
+              {(() => { const sx = 280/(flowData.length-1); const d = flowData.map((p,i) => `${i===0?'M':'L'} ${i*sx} ${80-(p/100)*80}`).join(' '); return (<><path d={d + ` L 280 80 L 0 80 Z`} fill="url(#cfGrad)" /><path d={d} fill="none" stroke="#8fa34a" strokeWidth="2" strokeLinecap="round" /></>); })()}
             </svg>
           </div>
         </div>
@@ -89,7 +89,7 @@ export function CrowdIntelligencePage() {
                     <div className="text-right"><div className={`text-lg font-bold ${zone.color}`}>{zone.count}</div><div className="text-[10px] text-gray-600">people</div></div>
                   </div>
                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full" style={{ width: `${zone.density}%`, background: zone.density >= 80 ? 'linear-gradient(90deg,#ef4444,#f97316)' : zone.density >= 60 ? 'linear-gradient(90deg,#f97316,#eab308)' : zone.density >= 40 ? 'linear-gradient(90deg,#eab308,#22d3ee)' : 'linear-gradient(90deg,#22d3ee,#00f5ff)' }} />
+                    <div className="h-full rounded-full" style={{ width: `${zone.density}%`, background: zone.density >= 80 ? 'linear-gradient(90deg,#ef4444,#f97316)' : zone.density >= 60 ? 'linear-gradient(90deg,#f97316,#eab308)' : zone.density >= 40 ? 'linear-gradient(90deg,#eab308,#9aad55)' : 'linear-gradient(90deg,#9aad55,#8fa34a)' }} />
                   </div>
                 </div>
               ))}

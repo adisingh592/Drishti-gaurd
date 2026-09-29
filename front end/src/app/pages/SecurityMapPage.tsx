@@ -50,9 +50,9 @@ export function SecurityMapPage() {
             <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-cyan-400" /><span className="text-sm font-mono text-cyan-400">TACTICAL MAP</span></div>
             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" /><span className="text-xs font-mono text-gray-500">LIVE</span></div>
           </div>
-          <div className="relative rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', border: '1px solid rgba(0,245,255,0.15)', minHeight: '500px' }}>
+          <div className="relative rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', border: '1px solid rgba(143,163,74,0.15)', minHeight: '500px' }}>
             {/* Grid */}
-            <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+            <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.04) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
             {/* Perimeter zones */}
             {perimeterZones.map(zone => (
@@ -78,7 +78,7 @@ export function SecurityMapPage() {
             {cameras.map(cam => (
               <div key={cam.id} className="absolute" style={{ top: `${cam.lat}%`, left: `${cam.lng}%` }}>
                 <div className={`w-3 h-3 rounded-full ${cam.status === 'threat' ? 'bg-red-400' : cam.status === 'alert' ? 'bg-orange-400' : cam.status === 'offline' ? 'bg-gray-500' : 'bg-cyan-400'}`}
-                  style={{ boxShadow: `0 0 4px ${cam.status === 'threat' ? 'rgba(239,68,68,0.5)' : 'rgba(0,245,255,0.4)'}` }} />
+                  style={{ boxShadow: `0 0 4px ${cam.status === 'threat' ? 'rgba(239,68,68,0.5)' : 'rgba(143,163,74,0.4)'}` }} />
                 <span className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 text-[8px] font-mono text-gray-600 whitespace-nowrap">{cam.id}</span>
               </div>
             ))}
@@ -86,7 +86,7 @@ export function SecurityMapPage() {
             {/* Radar overlay */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64">
               <div className="absolute inset-0 rounded-full border border-cyan-500/10" />
-              <div className="absolute inset-0 rounded-full overflow-hidden" style={{ background: 'conic-gradient(from 0deg, rgba(0,245,255,0.1), transparent 30%)' }}>
+              <div className="absolute inset-0 rounded-full overflow-hidden" style={{ background: 'conic-gradient(from 0deg, rgba(143,163,74,0.1), transparent 30%)' }}>
                 <div className="w-full h-full animate-radar" />
               </div>
             </div>

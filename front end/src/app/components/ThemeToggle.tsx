@@ -7,38 +7,29 @@ export function ThemeToggle() {
 
   return (
     <motion.button
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ y: -1 }}
       whileTap={{ scale: 0.95 }}
       onClick={toggleTheme}
-      className="relative p-2.5 rounded-xl border border-slate-200 dark:border-blue-500/20 bg-white/40 dark:bg-slate-950/40 backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(59,130,246,0.1)] text-slate-700 dark:text-cyan-400 focus:outline-none overflow-hidden cursor-pointer"
+      aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      title={theme === "light" ? "Dark mode" : "Light mode"}
+      className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl card-soft flex items-center justify-center text-foreground hover:bg-muted focus-visible:outline-2 focus-visible:outline-ring cursor-pointer overflow-hidden"
     >
       <div className="relative w-5 h-5 flex items-center justify-center">
-        {/* Sun Icon */}
         <motion.div
-          initial={{ rotate: -90, scale: 0, opacity: 0 }}
-          animate={
-            theme === "light"
-              ? { rotate: 0, scale: 1, opacity: 1 }
-              : { rotate: 90, scale: 0, opacity: 0 }
-          }
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          initial={false}
+          animate={theme === "light" ? { rotate: 0, scale: 1, opacity: 1 } : { rotate: 90, scale: 0, opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
           className="absolute"
         >
-          <Sun className="w-5 h-5 text-amber-500" />
+          <Sun className="w-5 h-5" strokeWidth={1.8} />
         </motion.div>
-
-        {/* Moon Icon */}
         <motion.div
-          initial={{ rotate: 90, scale: 0, opacity: 0 }}
-          animate={
-            theme === "dark"
-              ? { rotate: 0, scale: 1, opacity: 1 }
-              : { rotate: -90, scale: 0, opacity: 0 }
-          }
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          initial={false}
+          animate={theme === "dark" ? { rotate: 0, scale: 1, opacity: 1 } : { rotate: -90, scale: 0, opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
           className="absolute"
         >
-          <Moon className="w-5 h-5 text-cyan-400" />
+          <Moon className="w-5 h-5" strokeWidth={1.8} />
         </motion.div>
       </div>
     </motion.button>

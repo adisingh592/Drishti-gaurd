@@ -1,14 +1,42 @@
-# Dependencies
+# ==============================================================================
+#  DrishtiGuard — root .gitignore
+#  Covers: front end/ (Node/Vite), backend/ (FastAPI), ai_models/, ml/ (YOLO)
+#  Rule of thumb: commit source, configs, docs and *.example files;
+#  never commit secrets, dependencies, datasets, weights, runs or user uploads.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Secrets & local environment
+# ------------------------------------------------------------------------------
+.env
+.env.*
+*.env
+!.env.example
+!**/.env.example
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# ------------------------------------------------------------------------------
+# Node / frontend
+# ------------------------------------------------------------------------------
 node_modules/
 jspm_packages/
 web_modules/
 .npm/
 .pnpm-store/
-*.log
+.yarn/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+vite.config.*.timestamp-*
 
-# Production builds
+# Build output
 dist/
-build/
+dist-ssr/
 out/
 .next/
 .nuxt/
@@ -16,39 +44,58 @@ out/
 .parcel-cache/
 .eslintcache
 .stylelintcache
+build/
 
-# Local environment variables and secrets
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-*.env
-*.env.local
-!.env.example
-
-# Python environment and cache
+# ------------------------------------------------------------------------------
+# Python
+# ------------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+*.egg-info/
+.eggs/
 .venv/
 venv/
+/env/
 ENV/
-env/
+.python-version
+pip-log.txt
+
+# Tooling caches / test output
 .pytest_cache/
-.coverage
-htmlcov/
 .mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+coverage/
+htmlcov/
 .ipynb_checkpoints/
 
-# Machine Learning - Datasets and Prepared Data
+# ------------------------------------------------------------------------------
+# ML — datasets & prepared data (downloaded / generated, can be many GB)
+# ------------------------------------------------------------------------------
 **/datasets/
 **/prepared/
-backend/data/
+*.cache
+labels.cache
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
 
-# Machine Learning - Model Weights and Large Exports (ONNX, TorchScript, PyTorch, etc.)
+# ------------------------------------------------------------------------------
+# ML — model weights & exports
+#   Base weights (yolo11n.pt, yolov8s-worldv2.pt …) are auto-downloaded by
+#   Ultralytics; trained weights are produced by ml/ and ai_models/ pipelines.
+# ------------------------------------------------------------------------------
 *.pt
 *.pth
+*.ckpt
+*.safetensors
 *.onnx
 *.torchscript
 *.engine
@@ -57,36 +104,29 @@ backend/data/
 *.h5
 *.keras
 *.weights
+*.bin
 *.pkl
 *.pickle
 *.joblib
+**/weights/
+**/exports/
+ml/models/
 
-# Machine Learning - Training Runs, Logs and Validation Plots
-**/runs/
+# ------------------------------------------------------------------------------
+# ML — training runs, experiment trackers, checkpoints
+# ------------------------------------------------------------------------------
 runs/
+**/runs/
+wandb/
+mlruns/
+lightning_logs/
+ai_models/checkpoints/*
+!ai_models/checkpoints/README.md
 
-# OS files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE and editor settings
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.bak
-*.tmp
-*.temp
-
-# Application uploads and reports
+# ------------------------------------------------------------------------------
+# Application data (user uploads, generated reports, local DB store)
+# ------------------------------------------------------------------------------
+backend/data/
 uploads/*
 !uploads/.gitkeep
 reports/*
@@ -94,10 +134,51 @@ reports/*
 ml/reports/*
 !ml/reports/.gitkeep
 
-# Model weights and exports folders
-**/weights/
-**/exports/
+# Media files produced at runtime (screenshots under docs/ are kept)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
 
-# Training checkpoints and progress files
-ai_models/checkpoints/bcd_progress.json
+# ------------------------------------------------------------------------------
+# Logs & temp files
+# ------------------------------------------------------------------------------
+*.log
+logs/
+*.bak
+*.tmp
+*.temp
+*.swp
+*.sw?
 
+# ------------------------------------------------------------------------------
+# OS files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------------------
+# IDE / editor
+# ------------------------------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ------------------------------------------------------------------------------
+# AI assistant local state (keep shared project config, drop personal state)
+# ------------------------------------------------------------------------------
+.claude/settings.local.json
+.gemini/
+.cursor/
+.system_generated/

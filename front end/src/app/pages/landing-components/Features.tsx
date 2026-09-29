@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import { Shield, Camera, Brain, Activity, AlertTriangle, Car, Users, MapPin, FileText, Zap, Lock } from 'lucide-react';
 
 const features = [
-  { icon: Shield, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', glow: 'rgba(0,245,255,0.15)', title: 'Weapon Detection', description: 'Real-time detection of firearms, knives, and other weapons with 99.7% accuracy using multi-layer neural networks.', tags: ['Guns','Knives','Objects'] },
-  { icon: Brain, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20', glow: 'rgba(14,165,233,0.15)', title: 'AI Threat Analysis', description: 'Advanced behavioral analysis algorithms detect suspicious movements and predict threat escalation before incidents occur.', tags: ['Behavior','Pattern','Prediction'] },
+  { icon: Shield, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', glow: 'rgba(143,163,74,0.15)', title: 'Weapon Detection', description: 'Real-time detection of firearms, knives, and other weapons with 99.7% accuracy using multi-layer neural networks.', tags: ['Guns','Knives','Objects'] },
+  { icon: Brain, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20', glow: 'rgba(107,129,50,0.15)', title: 'AI Threat Analysis', description: 'Advanced behavioral analysis algorithms detect suspicious movements and predict threat escalation before incidents occur.', tags: ['Behavior','Pattern','Prediction'] },
   { icon: Users, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', glow: 'rgba(16,185,129,0.15)', title: 'Crowd Intelligence', description: 'Monitor crowd density, detect panic movements, and generate real-time heatmaps for smart crowd management.', tags: ['Density','Heatmaps','Panic'] },
   { icon: Car, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', glow: 'rgba(245,158,11,0.15)', title: 'Traffic Monitoring', description: 'Automated vehicle tracking, rash driving detection, license plate recognition, and traffic flow optimization.', tags: ['Vehicles','Speed','ANPR'] },
-  { icon: Camera, color: 'text-cyan-300', bg: 'bg-cyan-400/10', border: 'border-cyan-400/20', glow: 'rgba(0,245,255,0.12)', title: 'Multi-Camera Control', description: 'Centralized management of 1000+ cameras with intelligent auto-pan, zoom, and tracking capabilities.', tags: ['PTZ','Multi-Feed','Tracking'] },
+  { icon: Camera, color: 'text-cyan-300', bg: 'bg-cyan-400/10', border: 'border-cyan-400/20', glow: 'rgba(143,163,74,0.12)', title: 'Multi-Camera Control', description: 'Centralized management of 1000+ cameras with intelligent auto-pan, zoom, and tracking capabilities.', tags: ['PTZ','Multi-Feed','Tracking'] },
   { icon: Activity, color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', glow: 'rgba(239,68,68,0.15)', title: 'Intrusion Detection', description: 'Virtual perimeter security with instant alerts for unauthorized access to restricted zones and facilities.', tags: ['Perimeter','Zones','Alerts'] },
-  { icon: FileText, color: 'text-sky-400', bg: 'bg-sky-500/10', border: 'border-sky-500/20', glow: 'rgba(14,165,233,0.12)', title: 'AI Report Generation', description: 'Automated incident reports with annotated evidence, threat timelines, and downloadable documentation.', tags: ['Reports','Evidence','Timeline'] },
+  { icon: FileText, color: 'text-sky-400', bg: 'bg-sky-500/10', border: 'border-sky-500/20', glow: 'rgba(107,129,50,0.12)', title: 'AI Report Generation', description: 'Automated incident reports with annotated evidence, threat timelines, and downloadable documentation.', tags: ['Reports','Evidence','Timeline'] },
   { icon: MapPin, color: 'text-rose-400', bg: 'bg-rose-500/10', border: 'border-rose-500/20', glow: 'rgba(244,63,94,0.12)', title: 'Geo-Fencing', description: 'Dynamic location-based security zones with real-time tracking and smart alert systems.', tags: ['Location','Zones','GPS'] },
-  { icon: Lock, color: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/20', glow: 'rgba(139,92,246,0.12)', title: 'Encrypted Security', description: 'Military-grade AES-256 encryption for all video feeds, data storage, and communications.', tags: ['AES-256','Zero-Trust','Compliant'] },
+  { icon: Lock, color: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/20', glow: 'rgba(168,129,74,0.12)', title: 'Encrypted Security', description: 'Military-grade AES-256 encryption for all video feeds, data storage, and communications.', tags: ['AES-256','Zero-Trust','Compliant'] },
 ];
 
 function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
@@ -29,7 +29,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
     <div ref={ref} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       className="relative glass rounded-xl p-6 border transition-all duration-500 cursor-pointer group"
       style={{
-        borderColor: hovered ? 'rgba(0,245,255,0.2)' : 'rgba(255,255,255,0.06)',
+        borderColor: hovered ? 'rgba(143,163,74,0.2)' : 'rgba(255,255,255,0.06)',
         boxShadow: hovered ? `0 0 30px ${feature.glow}, inset 0 0 30px ${feature.glow}` : 'none',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(30px)',
@@ -65,7 +65,7 @@ export default function Features() {
 
   return (
     <section id="features" className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,245,255,0.04), transparent 60%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(143,163,74,0.04), transparent 60%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className="text-center mb-16"
           style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>

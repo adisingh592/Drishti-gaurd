@@ -22,7 +22,7 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(14,165,233,0.04), transparent 60%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(107,129,50,0.04), transparent 60%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">

@@ -86,3 +86,7 @@ export async function pollUntilComplete(
     await new Promise((r) => setTimeout(r, intervalMs));
   }
 }
+
+export async function getHealth(): Promise<{ status: string; service: string }> {
+  return request('/api/health');
+}

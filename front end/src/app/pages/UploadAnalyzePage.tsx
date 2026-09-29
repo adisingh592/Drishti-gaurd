@@ -234,8 +234,8 @@ export function UploadAnalyzePage() {
                         width: `${progress}%`,
                         background: analyzed
                           ? 'linear-gradient(90deg, #10b981, #34d399)'
-                          : 'linear-gradient(90deg, #06b6d4, #3b82f6)',
-                        boxShadow: analyzed ? 'rgba(16,185,129,0.5)' : 'rgba(59,130,246,0.5)',
+                          : 'linear-gradient(90deg, #8fa34a, #6b8132)',
+                        boxShadow: analyzed ? 'rgba(16,185,129,0.5)' : 'rgba(107,129,50,0.5)',
                       }}
                     />
                   </div>
@@ -262,7 +262,7 @@ export function UploadAnalyzePage() {
 
           {analyzed && videoUrl && (
             <div className="glass rounded-xl overflow-hidden border border-slate-200 dark:border-white/5">
-              <div className="relative aspect-video bg-[#050d1a]">
+              <div className="relative aspect-video bg-[#1a1c14]">
                 <video
                   ref={videoRef}
                   src={videoUrl}
@@ -282,7 +282,7 @@ export function UploadAnalyzePage() {
                     </div>
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 px-3 py-2" style={{ background: 'rgba(2,8,20,0.9)' }}>
+                <div className="absolute bottom-0 left-0 right-0 px-3 py-2" style={{ background: 'rgba(20,22,15,0.9)' }}>
                   <div className="flex items-center gap-3">
                     <button type="button" className="text-cyan-400 hover:text-cyan-300" onClick={togglePlay}>
                       {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -436,11 +436,11 @@ export function UploadAnalyzePage() {
                       border:
                         snap.severity === 'CRITICAL'
                           ? '1px solid rgba(239,68,68,0.3)'
-                          : '1px solid rgba(59,130,246,0.2)',
+                          : '1px solid rgba(107,129,50,0.2)',
                     }}
                   >
                     <img src={snap.imageUrl} alt={snap.label} className="w-full h-full object-cover" />
-                    <div className="absolute bottom-0 left-0 right-0 px-2 py-1" style={{ background: 'rgba(2,8,20,0.9)' }}>
+                    <div className="absolute bottom-0 left-0 right-0 px-2 py-1" style={{ background: 'rgba(20,22,15,0.9)' }}>
                       <div className="text-[10px] text-gray-400 font-mono">{snap.time}</div>
                       <div
                         className={`text-[10px] font-mono ${

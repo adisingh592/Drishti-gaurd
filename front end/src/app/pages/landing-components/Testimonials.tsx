@@ -31,7 +31,7 @@ export default function Testimonials() {
 
   return (
     <section ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(14,165,233,0.04), transparent 60%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(107,129,50,0.04), transparent 60%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">
@@ -43,7 +43,7 @@ export default function Testimonials() {
 
         <div className="max-w-4xl mx-auto mb-10" style={{ opacity: visible ? 1 : 0, transition: 'all 0.7s ease 0.2s' }}>
           <div key={activeIndex} className="glass-dark rounded-2xl p-8 neon-border relative overflow-hidden" style={{ transition: 'all 0.4s ease' }}>
-            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 20%, rgba(0,245,255,0.04), transparent 50%)' }} />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 20%, rgba(143,163,74,0.04), transparent 50%)' }} />
             <Quote className="w-10 h-10 text-cyan-400/20 mb-4" />
             <p className="text-white text-xl leading-relaxed mb-6 font-light">"{t.quote}"</p>
             <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-6">

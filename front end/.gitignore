@@ -1,43 +1,20 @@
 # ==============================================================================
-#                 DRISHTI GUARD - FIGMA MODULE GITIGNORE
+#  DrishtiGuard — front end/.gitignore
+#  Generic rules (node_modules, dist, .env, OS/IDE files, logs) live in the
+#  repository root .gitignore. Only frontend-specific entries belong here.
 # ==============================================================================
 
-# Dependencies
-node_modules/
-jspm_packages/
-web_modules/
-.npm/
-.pnpm-store/
-pnpm-debug.log*
-
-# Builds and Outputs
-dist/
-build/
-out/
-.cache/
-.parcel-cache/
-.eslintcache
-
-# Local Environments
-.env
+# Local Vite env overrides (.env.example stays tracked)
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
-*.env.local
-*.env
+.env.*.local
 
-# OS / Editor Files
-.DS_Store
-.DS_Store?
-._*
-ehthumbs.db
-Thumbs.db
-.vscode/
-.idea/
-*.sw?
+# Figma / design-tool exports and scratch imports
+src/imports/
+guidelines/
+Guidelines.md
+guidelines.md
 
-# AI Agents & Assistants Metadata (Clean Github Repo)
+# AI assistant metadata & planning scratch files
 .gemini/
 .system_generated/
 .cursorrules
@@ -47,8 +24,6 @@ Thumbs.db
 .windsurfrules
 copilot-instructions.md
 ai-instructions.md
-
-# Planning docs, scratchpads & logs
 brain/
 artifacts/
 scratch/
@@ -56,12 +31,5 @@ walkthrough.md
 implementation_plan.md
 task.md
 
-# Guidelines template
-guidelines/
-Guidelines.md
-guidelines.md
-*guidelines*
-
-# Ignore all markdown documentation and implementation plans
-*.md
-**/*.md
+# Generated / third-party attribution notes from the design export
+ATTRIBUTIONS.md

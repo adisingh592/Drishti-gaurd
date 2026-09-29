@@ -63,7 +63,7 @@ function MiniBarChart() {
   return (
     <div ref={ref} className="flex items-end gap-1 h-16">
       {weeklyData.map((val, i) => (
-        <div key={i} className="flex-1 rounded-t-sm transition-all" style={{ height: visible ? `${val}%` : '0%', transitionDelay: `${i*50}ms`, background: val > 80 ? 'rgba(239,68,68,0.7)' : val > 60 ? 'rgba(249,115,22,0.6)' : 'rgba(0,245,255,0.4)', boxShadow: val > 80 ? '0 0 8px rgba(239,68,68,0.4)' : 'none' }} />
+        <div key={i} className="flex-1 rounded-t-sm transition-all" style={{ height: visible ? `${val}%` : '0%', transitionDelay: `${i*50}ms`, background: val > 80 ? 'rgba(239,68,68,0.7)' : val > 60 ? 'rgba(249,115,22,0.6)' : 'rgba(143,163,74,0.4)', boxShadow: val > 80 ? '0 0 8px rgba(239,68,68,0.4)' : 'none' }} />
       ))}
     </div>
   );
@@ -81,7 +81,7 @@ export default function ThreatDetection() {
 
   return (
     <section id="ai-analytics" ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(239,68,68,0.04), transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(0,245,255,0.04), transparent 50%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(239,68,68,0.04), transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(143,163,74,0.04), transparent 50%)' }} />
       <div className="absolute inset-0 grid-bg opacity-30" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>

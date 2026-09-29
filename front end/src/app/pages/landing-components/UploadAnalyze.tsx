@@ -44,7 +44,7 @@ export default function UploadAnalyze() {
 
   return (
     <section ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(14,165,233,0.05), transparent 50%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(107,129,50,0.05), transparent 50%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">
@@ -93,7 +93,7 @@ export default function UploadAnalyze() {
                 {(analyzing || analyzed) && (
                   <div className="w-full">
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full rounded-full transition-all" style={{ width: `${progress}%`, background: analyzed ? 'linear-gradient(90deg, #10b981, #34d399)' : 'linear-gradient(90deg, #06b6d4, #0ea5e9)', boxShadow: `0 0 8px ${analyzed ? 'rgba(16,185,129,0.5)' : 'rgba(0,245,255,0.5)'}` }} />
+                      <div className="h-full rounded-full transition-all" style={{ width: `${progress}%`, background: analyzed ? 'linear-gradient(90deg, #10b981, #34d399)' : 'linear-gradient(90deg, #8fa34a, #5a6e28)', boxShadow: `0 0 8px ${analyzed ? 'rgba(16,185,129,0.5)' : 'rgba(143,163,74,0.5)'}` }} />
                     </div>
                   </div>
                 )}

@@ -20,7 +20,7 @@ function getHeatColor(value: number): string {
   if (value >= 60) return `rgba(249,115,22,${value/100*0.85})`;
   if (value >= 40) return `rgba(234,179,8,${value/100*0.8})`;
   if (value >= 20) return `rgba(34,211,238,${value/100*0.7})`;
-  return `rgba(0,245,255,${Math.max(0.05, value/100*0.4)})`;
+  return `rgba(143,163,74,${Math.max(0.05, value/100*0.4)})`;
 }
 
 function CrowdLineChart({ visible }: { visible: boolean }) {
@@ -31,12 +31,12 @@ function CrowdLineChart({ visible }: { visible: boolean }) {
 
   return (
     <svg width="100%" viewBox={`0 0 ${w} ${h}`} className="overflow-visible">
-      <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(0,245,255,0.3)" /><stop offset="100%" stopColor="rgba(0,245,255,0.01)" /></linearGradient></defs>
+      <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="rgba(143,163,74,0.3)" /><stop offset="100%" stopColor="rgba(143,163,74,0.01)" /></linearGradient></defs>
       <path d={areaD} fill="url(#ag)" />
-      <path d={pathD} fill="none" stroke="#00f5ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      <path d={pathD} fill="none" stroke="#8fa34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
         strokeDasharray="1000" strokeDashoffset={visible ? '0' : '1000'} style={{ transition: 'stroke-dashoffset 2s ease' }} />
       {visible && points.map((p,i) => (
-        <circle key={i} cx={i*sx} cy={h-(p/max)*h} r="2.5" fill="#00f5ff" style={{ filter: 'drop-shadow(0 0 4px rgba(0,245,255,0.8))' }} />
+        <circle key={i} cx={i*sx} cy={h-(p/max)*h} r="2.5" fill="#8fa34a" style={{ filter: 'drop-shadow(0 0 4px rgba(143,163,74,0.8))' }} />
       ))}
     </svg>
   );
@@ -54,7 +54,7 @@ export default function CrowdDensity() {
 
   return (
     <section id="crowd-density" ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 30% 60%, rgba(0,245,255,0.04), transparent 50%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 30% 60%, rgba(143,163,74,0.04), transparent 50%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">
@@ -71,8 +71,8 @@ export default function CrowdDensity() {
                 <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-cyan-400" /><span className="text-sm font-mono text-cyan-400">REAL-TIME CROWD HEATMAP</span></div>
                 <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" /><span className="text-xs font-mono text-gray-500">LIVE</span></div>
               </div>
-              <div className="relative rounded-xl overflow-hidden p-3" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', border: '1px solid rgba(0,245,255,0.15)' }}>
-                <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+              <div className="relative rounded-xl overflow-hidden p-3" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', border: '1px solid rgba(143,163,74,0.15)' }}>
+                <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
                 <div className="relative grid gap-1" style={{ gridTemplateRows: 'repeat(8, 1fr)', gridTemplateColumns: 'repeat(10, 1fr)' }}>
                   {heatmapData.map((row, ri) => row.map((cell, ci) => (
                     <div key={`${ri}-${ci}`} className="rounded-sm transition-all" style={{ height: '28px', background: visible ? getHeatColor(cell) : 'transparent', transitionDelay: `${(ri*10+ci)*15}ms`, boxShadow: cell >= 80 ? '0 0 6px rgba(239,68,68,0.4)' : 'none' }} />
@@ -83,7 +83,7 @@ export default function CrowdDensity() {
                 <div className="absolute top-8 left-16 w-4 h-4 rounded-full border-2 border-red-400 animate-ping opacity-60" />
                 <div className="absolute bottom-2 right-2 flex items-center gap-2">
                   <span className="text-xs text-gray-600 font-mono">LOW</span>
-                  <div className="flex gap-0.5">{['rgba(0,245,255,0.3)','rgba(234,179,8,0.5)','rgba(249,115,22,0.6)','rgba(239,68,68,0.8)'].map((c,i) => (<div key={i} className="w-6 h-2.5 rounded-sm" style={{ background: c }} />))}</div>
+                  <div className="flex gap-0.5">{['rgba(143,163,74,0.3)','rgba(234,179,8,0.5)','rgba(249,115,22,0.6)','rgba(239,68,68,0.8)'].map((c,i) => (<div key={i} className="w-6 h-2.5 rounded-sm" style={{ background: c }} />))}</div>
                   <span className="text-xs text-gray-600 font-mono">HIGH</span>
                 </div>
               </div>
@@ -111,7 +111,7 @@ export default function CrowdDensity() {
                       <div className="text-right"><div className={`text-lg font-bold ${zone.color}`}>{zone.count}</div><div className="text-xs text-gray-600">people</div></div>
                     </div>
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full rounded-full transition-all" style={{ width: visible ? `${zone.density}%` : '0%', transitionDelay: `${i*150+400}ms`, background: zone.density>=80?'linear-gradient(90deg,#ef4444,#f97316)':zone.density>=60?'linear-gradient(90deg,#f97316,#eab308)':zone.density>=40?'linear-gradient(90deg,#eab308,#22d3ee)':'linear-gradient(90deg,#22d3ee,#00f5ff)' }} />
+                      <div className="h-full rounded-full transition-all" style={{ width: visible ? `${zone.density}%` : '0%', transitionDelay: `${i*150+400}ms`, background: zone.density>=80?'linear-gradient(90deg,#ef4444,#f97316)':zone.density>=60?'linear-gradient(90deg,#f97316,#eab308)':zone.density>=40?'linear-gradient(90deg,#eab308,#9aad55)':'linear-gradient(90deg,#9aad55,#8fa34a)' }} />
                     </div>
                     <div className="flex justify-between mt-1"><span className="text-xs text-gray-600 font-mono">Density</span><span className={`text-xs font-mono ${zone.color}`}>{zone.density}%</span></div>
                   </div>

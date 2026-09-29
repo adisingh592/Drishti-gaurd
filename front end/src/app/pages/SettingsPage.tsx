@@ -21,7 +21,7 @@ function SettingSlider({ label, value, unit, min, max }: { label: string; value:
     <div className="py-3 border-b border-slate-200 dark:border-white/5 last:border-0">
       <div className="flex items-center justify-between mb-2"><span className="text-sm text-slate-800 dark:text-white">{label}</span><span className="text-sm font-mono text-cyan-400">{val}{unit}</span></div>
       <input type="range" min={min} max={max} value={val} onChange={e => setVal(parseInt(e.target.value))}
-        className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(0,245,255,0.5)]" />
+        className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(143,163,74,0.5)]" />
     </div>
   );
 }

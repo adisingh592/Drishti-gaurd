@@ -5,14 +5,14 @@ import { Link } from 'react-router';
 function AnimatedBG() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 30% 40%, rgba(0,245,255,0.08), transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(14,165,233,0.06), transparent 60%), var(--background)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 30% 40%, rgba(143,163,74,0.08), transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(107,129,50,0.06), transparent 60%), var(--background)' }} />
       <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-100" />
       {[
         { top: '20%', left: '15%', d: '0s' }, { top: '70%', left: '80%', d: '2s' },
         { top: '40%', left: '90%', d: '1s' }, { top: '80%', left: '10%', d: '3s' },
       ].map((p, i) => (
         <div key={i} className="absolute w-2 h-2 rounded-full bg-cyan-400/40"
-          style={{ top: p.top, left: p.left, animation: `float 6s ease-in-out ${p.d} infinite`, filter: 'blur(1px)', boxShadow: '0 0 6px rgba(0,245,255,0.5)' }} />
+          style={{ top: p.top, left: p.left, animation: `float 6s ease-in-out ${p.d} infinite`, filter: 'blur(1px)', boxShadow: '0 0 6px rgba(143,163,74,0.5)' }} />
       ))}
     </div>
   );

@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Check, Zap, Shield, Crown } from 'lucide-react';
 
 const plans = [
-  { name: 'Starter', icon: Zap, price: { monthly: 299, annual: 249 }, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', glow: 'rgba(0,245,255,0.1)', popular: false, description: 'For small businesses and startups.', cameras: 'Up to 16 cameras',
+  { name: 'Starter', icon: Zap, price: { monthly: 299, annual: 249 }, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', glow: 'rgba(143,163,74,0.1)', popular: false, description: 'For small businesses and startups.', cameras: 'Up to 16 cameras',
     features: ['Real-time weapon detection','Basic crowd monitoring','Email & SMS alerts','Cloud storage 30 days','Standard AI models','Single location','API access'],
     excluded: ['Multi-location support','Custom AI training','White-label reports'] },
-  { name: 'Professional', icon: Shield, price: { monthly: 799, annual: 649 }, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20', glow: 'rgba(14,165,233,0.15)', popular: true, description: 'For growing enterprises and city deployments.', cameras: 'Up to 128 cameras',
+  { name: 'Professional', icon: Shield, price: { monthly: 799, annual: 649 }, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20', glow: 'rgba(107,129,50,0.15)', popular: true, description: 'For growing enterprises and city deployments.', cameras: 'Up to 128 cameras',
     features: ['All Starter features','Crowd density heatmaps','Traffic monitoring & ANPR','Intrusion detection zones','AI-generated reports','Multi-location (up to 5)','Cloud storage 90 days','Priority support 24/7','Dashboard analytics'],
     excluded: ['Unlimited locations','Custom AI training'] },
   { name: 'Enterprise', icon: Crown, price: { monthly: null, annual: null }, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', glow: 'rgba(245,158,11,0.1)', popular: false, description: 'For national deployments and critical infrastructure.', cameras: 'Unlimited cameras',
@@ -26,7 +26,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,245,255,0.03), transparent 50%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(143,163,74,0.03), transparent 50%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">

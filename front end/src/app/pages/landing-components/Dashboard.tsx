@@ -19,7 +19,7 @@ const incidents = [
 function MiniLineChart({ data }: { data: number[] }) {
   const max = Math.max(...data); const w = 80; const h = 30; const sx = w/(data.length-1);
   const d = data.map((v,i) => `${i===0?'M':'L'} ${i*sx} ${h-(v/max)*h}`).join(' ');
-  return <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}><path d={d} fill="none" stroke="#00f5ff" strokeWidth="1.5" strokeLinecap="round" /></svg>;
+  return <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}><path d={d} fill="none" stroke="#8fa34a" strokeWidth="1.5" strokeLinecap="round" /></svg>;
 }
 
 export default function Dashboard() {
@@ -34,7 +34,7 @@ export default function Dashboard() {
 
   return (
     <section id="dashboard" ref={ref} className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(0,245,255,0.04), transparent 60%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(143,163,74,0.04), transparent 60%)' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}>
           <div className="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-1.5 mb-4">
@@ -44,8 +44,8 @@ export default function Dashboard() {
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">Centralized command center with real-time analytics and AI-driven surveillance insights.</p>
         </div>
 
-        <div className="glass-dark rounded-2xl overflow-hidden neon-border" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.98)', transition: 'all 0.8s ease 0.2s', boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 40px rgba(0,245,255,0.08)' }}>
-          <div className="flex items-center justify-between px-4 py-2 border-b border-cyan-500/10" style={{ background: 'rgba(0,8,20,0.8)' }}>
+        <div className="glass-dark rounded-2xl overflow-hidden neon-border" style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.98)', transition: 'all 0.8s ease 0.2s', boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 40px rgba(143,163,74,0.08)' }}>
+          <div className="flex items-center justify-between px-4 py-2 border-b border-cyan-500/10" style={{ background: 'rgba(20,22,15,0.8)' }}>
             <div className="flex items-center gap-2">
               <div className="flex gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-red-500" /><div className="w-2.5 h-2.5 rounded-full bg-yellow-500" /><div className="w-2.5 h-2.5 rounded-full bg-emerald-500" /></div>
               <span className="text-xs font-mono text-gray-500 ml-2">DRISHTI_GUARD • CONTROL_CENTER_v4.2</span>
@@ -56,7 +56,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex">
-            <div className="w-14 md:w-48 border-r border-cyan-500/10 flex flex-col" style={{ background: 'rgba(0,8,20,0.6)', minHeight: '480px' }}>
+            <div className="w-14 md:w-48 border-r border-cyan-500/10 flex flex-col" style={{ background: 'rgba(20,22,15,0.6)', minHeight: '480px' }}>
               <div className="flex items-center gap-3 px-3 py-4 border-b border-cyan-500/10">
                 <div className="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0"><Shield className="w-4 h-4 text-cyan-400" /></div>
                 <span className="text-sm font-bold text-slate-800 dark:text-white hidden md:block">DRISHTI</span>
@@ -89,10 +89,10 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between mb-3"><div className="flex items-center gap-2"><Camera className="w-3.5 h-3.5 text-cyan-400" /><span className="text-xs font-mono text-cyan-400">LIVE FEEDS</span></div><span className="text-xs text-gray-600 font-mono">VIEW ALL</span></div>
                   <div className="grid grid-cols-3 gap-2">
                     {[{l:'CAM-001',t:true},{l:'CAM-002',t:false},{l:'CAM-003',t:false}].map(cam => (
-                      <div key={cam.l} className="relative rounded-lg overflow-hidden aspect-video" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', border: cam.t ? '1px solid rgba(239,68,68,0.4)' : '1px solid rgba(0,245,255,0.1)' }}>
-                        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.015) 1px, transparent 1px)', backgroundSize: '15px 15px' }} />
+                      <div key={cam.l} className="relative rounded-lg overflow-hidden aspect-video" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', border: cam.t ? '1px solid rgba(239,68,68,0.4)' : '1px solid rgba(143,163,74,0.1)' }}>
+                        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.015) 1px, transparent 1px)', backgroundSize: '15px 15px' }} />
                         <div className="absolute inset-0 overflow-hidden"><div className={`absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent ${cam.t ? 'via-red-400/60' : 'via-cyan-400/40'} to-transparent`} style={{ animation: 'scanLine 2s linear infinite' }} /></div>
-                        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-1.5 py-1" style={{ background: 'rgba(2,8,20,0.9)' }}>
+                        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-1.5 py-1" style={{ background: 'rgba(20,22,15,0.9)' }}>
                           <span className="font-mono text-gray-600" style={{ fontSize: '9px' }}>{cam.l}</span>
                           <span className={`font-mono ${cam.t ? 'text-red-400 animate-blink' : 'text-emerald-400'}`} style={{ fontSize: '9px' }}>● {cam.t ? 'ALERT' : 'LIVE'}</span>
                         </div>

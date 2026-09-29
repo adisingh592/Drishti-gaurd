@@ -1,102 +1,163 @@
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * DrishtiGuard "Olive Field" theme
+ * --------------------------------
+ * Calm cream surfaces, deep olive accents, soft sage highlights.
+ * Semantic colours (red / orange / amber) are kept for threat severity.
+ *
+ * The legacy cyber palette (cyan / blue / sky / indigo / slate / gray …) that
+ * older pages reference directly is remapped below onto olive + warm-neutral
+ * scales, so every screen picks up the new look without per-page rewrites.
+ */
+
 :root {
   --font-size: 16px;
-  --background: #f8fafc; /* Silver-blue background */
-  --foreground: #0f172a; /* Slate text */
-  --card: rgba(255, 255, 255, 0.45); /* Frosted light card */
-  --card-foreground: #0f172a;
-  --popover: rgba(255, 255, 255, 0.95);
-  --popover-foreground: #0f172a;
-  --primary: #2563eb; /* Royal blue */
+  --background: #f6f4ec;          /* warm cream */
+  --foreground: #1f2418;          /* ink olive */
+  --card: #fcfbf6;                /* paper card */
+  --card-foreground: #1f2418;
+  --popover: #fffefa;
+  --popover-foreground: #1f2418;
+  --primary: #4b5d23;             /* deep olive */
   --primary-foreground: #ffffff;
-  --secondary: #7c3aed; /* Soft purple */
-  --secondary-foreground: #ffffff;
-  --muted: rgba(226, 232, 240, 0.8);
-  --muted-foreground: #64748b;
-  --accent: #0891b2; /* Soft cyan */
+  --secondary: #ebecd6;           /* sage wash */
+  --secondary-foreground: #3e4d1c;
+  --muted: #f0eee4;
+  --muted-foreground: #6b6a5a;
+  --accent: #6b8132;              /* leaf olive */
   --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --destructive: #d64545;
   --destructive-foreground: #ffffff;
-  --border: rgba(148, 163, 184, 0.25);
-  --input: rgba(226, 232, 240, 0.5);
-  --input-background: rgba(226, 232, 240, 0.5);
-  --switch-background: rgba(203, 213, 225, 0.8);
+  --border: #e6e3d6;
+  --input: #f0eee4;
+  --input-background: #f5f3ea;
+  --switch-background: #d9d6c6;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #2563eb;
-  --chart-1: #2563eb;
-  --chart-2: #0891b2;
-  --chart-3: #7c3aed;
-  --chart-4: #db2777;
-  --chart-5: #ea580c;
-  --radius: 0.75rem;
-  --sidebar: rgba(248, 250, 252, 0.95);
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #2563eb;
+  --ring: #6b8132;
+  --chart-1: #5a6e28;
+  --chart-2: #9aab5f;
+  --chart-3: #c08a3e;
+  --chart-4: #d64545;
+  --chart-5: #e0892f;
+  --radius: 1rem;
+  --sidebar: #f9f8f2;
+  --sidebar-foreground: #1f2418;
+  --sidebar-primary: #4b5d23;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgba(37, 99, 235, 0.08);
-  --sidebar-accent-foreground: #2563eb;
-  --sidebar-border: rgba(226, 232, 240, 0.8);
-  --sidebar-ring: #2563eb;
-  --neon-blue: #3b82f6;
-  --neon-cyan: #06b6d4;
-  --neon-purple: #8b5cf6;
-  --neon-pink: #ec4899;
-  --danger-red: #ef4444;
-  --navy-dark: #f1f5f9;
+  --sidebar-accent: #ebecd6;
+  --sidebar-accent-foreground: #3e4d1c;
+  --sidebar-border: #e6e3d6;
+  --sidebar-ring: #6b8132;
+  --shadow-soft: 0 1px 2px rgba(60, 64, 40, 0.04), 0 8px 24px -12px rgba(60, 64, 40, 0.12);
+
+  /* status */
+  --safe: #4f7a26;
+  --safe-bg: #eef3e3;
+  --warn: #d9772b;
+  --warn-bg: #fdf3e6;
+  --danger: #c93a3a;
+  --danger-bg: #fcebea;
+
+  --neon-blue: #6b8132;
+  --neon-cyan: #8fa34a;
+  --neon-purple: #a07a45;
+  --neon-pink: #c96a5a;
+  --danger-red: #d64545;
+  --navy-dark: #f0eee4;
   --gta-orange: #ff9600;
   --gta-black: rgba(10, 11, 13, 0.9);
   --gta-slot-border: rgba(255, 150, 0, 0.15);
+
+  /* ---- Legacy palette remap (light) ---- */
+  --olive-50: #f5f6ec;
+  --olive-100: #eaedd6;
+  --olive-200: #d6dcb3;
+  --olive-300: #a9b86d;
+  --olive-400: #6b8132;
+  --olive-500: #5a6e28;
+  --olive-600: #4b5d21;
+  --olive-700: #3e4d1c;
+  --olive-800: #323e18;
+  --olive-900: #283214;
+  --olive-950: #1a210d;
+
+  --bronze-300: #d2b388;
+  --bronze-400: #a8814a;
+  --bronze-500: #8f6a37;
+  --bronze-600: #77572c;
 }
 
 .dark {
-  --background: #0b0f19; /* Premium Soft Deep Slate-Navy (Not pure black) */
-  --foreground: #e2e8f0; /* Crisp Slate Gray */
-  --card: rgba(21, 28, 48, 0.65); /* Luxurious translucent dark glass card */
-  --card-foreground: #e2e8f0;
-  --popover: rgba(15, 23, 42, 0.95);
-  --popover-foreground: #e2e8f0;
-  --primary: #3b82f6; /* Cyber blue */
-  --primary-foreground: #ffffff;
-  --secondary: #8b5cf6; /* Cyber purple */
-  --secondary-foreground: #ffffff;
-  --muted: rgba(30, 41, 59, 0.8);
-  --muted-foreground: #94a3b8;
-  --accent: #06b6d4; /* Cyber cyan */
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --background: #14160f;          /* night olive */
+  --foreground: #ecebdf;
+  --card: #1c1f16;
+  --card-foreground: #ecebdf;
+  --popover: #1f2218;
+  --popover-foreground: #ecebdf;
+  --primary: #8fa34a;
+  --primary-foreground: #14160f;
+  --secondary: #2a3019;
+  --secondary-foreground: #d0dc9c;
+  --muted: #23261c;
+  --muted-foreground: #a3a18d;
+  --accent: #a9bd62;
+  --accent-foreground: #14160f;
+  --destructive: #e46060;
   --destructive-foreground: #ffffff;
-  --border: rgba(59, 130, 246, 0.2); /* Neon cyan border */
-  --input: rgba(30, 41, 59, 0.5);
-  --input-background: rgba(30, 41, 59, 0.5);
-  --switch-background: rgba(51, 65, 85, 0.5);
-  --ring: #3b82f6;
-  --chart-1: #3b82f6;
-  --chart-2: #06b6d4;
-  --chart-3: #8b5cf6;
-  --chart-4: #ec4899;
-  --chart-5: #f59e0b;
-  --sidebar: rgba(11, 15, 25, 0.95);
-  --sidebar-foreground: #e2e8f0;
-  --sidebar-primary: #3b82f6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgba(59, 130, 246, 0.1);
-  --sidebar-accent-foreground: #3b82f6;
-  --sidebar-border: rgba(59, 130, 246, 0.2);
-  --sidebar-ring: #3b82f6;
-  --neon-blue: #3b82f6;
-  --neon-cyan: #06b6d4;
-  --neon-purple: #8b5cf6;
-  --neon-pink: #ec4899;
-  --danger-red: #ef4444;
-  --navy-dark: #0f172a;
+  --border: #2d3124;
+  --input: #23261c;
+  --input-background: #23261c;
+  --switch-background: #3a3e2e;
+  --ring: #a9bd62;
+  --chart-1: #a9bd62;
+  --chart-2: #6b8132;
+  --chart-3: #d2a45e;
+  --chart-4: #e46060;
+  --chart-5: #eb9a4a;
+  --sidebar: #181a12;
+  --sidebar-foreground: #ecebdf;
+  --sidebar-primary: #a9bd62;
+  --sidebar-primary-foreground: #14160f;
+  --sidebar-accent: #2a3019;
+  --sidebar-accent-foreground: #d0dc9c;
+  --sidebar-border: #2d3124;
+  --sidebar-ring: #a9bd62;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+
+  --safe: #9cc26a;
+  --safe-bg: rgba(156, 194, 106, 0.12);
+  --warn: #f0a15a;
+  --warn-bg: rgba(240, 161, 90, 0.12);
+  --danger: #f07c7c;
+  --danger-bg: rgba(240, 124, 124, 0.12);
+
+  --neon-blue: #a9bd62;
+  --neon-cyan: #b3c46e;
+  --neon-purple: #d2a45e;
+  --neon-pink: #e08a7a;
+  --danger-red: #e46060;
+  --navy-dark: #1c1f16;
   --gta-orange: #ff9600;
   --gta-black: rgba(5, 6, 8, 0.95);
   --gta-slot-border: rgba(255, 150, 0, 0.25);
+
+  /* ---- Legacy palette remap (dark): lighter tints for legibility ---- */
+  --olive-300: #d0dc9c;
+  --olive-400: #b3c46e;
+  --olive-500: #9aad55;
+  --olive-600: #81953f;
+
+  --bronze-300: #e6c99c;
+  --bronze-400: #d2a45e;
+  --bronze-500: #bb8d4a;
+  --bronze-600: #9f753a;
 }
 
 @theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
   --color-gta-orange: var(--gta-orange);
   --color-gta-black: var(--gta-black);
   --color-gta-slot-border: var(--gta-slot-border);
@@ -126,10 +187,17 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-safe: var(--safe);
+  --color-safe-bg: var(--safe-bg);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-xl: var(--radius);
+  --radius-2xl: calc(var(--radius) + 4px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -138,16 +206,75 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Olive scale (also exposed as its own utility family: bg-olive-500 …) */
+  --color-olive-50: var(--olive-50);
+  --color-olive-100: var(--olive-100);
+  --color-olive-200: var(--olive-200);
+  --color-olive-300: var(--olive-300);
+  --color-olive-400: var(--olive-400);
+  --color-olive-500: var(--olive-500);
+  --color-olive-600: var(--olive-600);
+  --color-olive-700: var(--olive-700);
+  --color-olive-800: var(--olive-800);
+  --color-olive-900: var(--olive-900);
+  --color-olive-950: var(--olive-950);
+
+  /* cyan / blue / sky / indigo  ->  olive */
+  --color-cyan-50: var(--olive-50);   --color-blue-50: var(--olive-50);   --color-sky-50: var(--olive-50);   --color-indigo-50: var(--olive-50);
+  --color-cyan-100: var(--olive-100); --color-blue-100: var(--olive-100); --color-sky-100: var(--olive-100); --color-indigo-100: var(--olive-100);
+  --color-cyan-200: var(--olive-200); --color-blue-200: var(--olive-200); --color-sky-200: var(--olive-200); --color-indigo-200: var(--olive-200);
+  --color-cyan-300: var(--olive-300); --color-blue-300: var(--olive-300); --color-sky-300: var(--olive-300); --color-indigo-300: var(--olive-300);
+  --color-cyan-400: var(--olive-400); --color-blue-400: var(--olive-400); --color-sky-400: var(--olive-400); --color-indigo-400: var(--olive-400);
+  --color-cyan-500: var(--olive-500); --color-blue-500: var(--olive-500); --color-sky-500: var(--olive-500); --color-indigo-500: var(--olive-500);
+  --color-cyan-600: var(--olive-600); --color-blue-600: var(--olive-600); --color-sky-600: var(--olive-600); --color-indigo-600: var(--olive-600);
+  --color-cyan-700: var(--olive-700); --color-blue-700: var(--olive-700); --color-sky-700: var(--olive-700); --color-indigo-700: var(--olive-700);
+  --color-cyan-800: var(--olive-800); --color-blue-800: var(--olive-800); --color-sky-800: var(--olive-800); --color-indigo-800: var(--olive-800);
+  --color-cyan-900: var(--olive-900); --color-blue-900: var(--olive-900); --color-sky-900: var(--olive-900); --color-indigo-900: var(--olive-900);
+  --color-cyan-950: var(--olive-950); --color-blue-950: var(--olive-950); --color-sky-950: var(--olive-950); --color-indigo-950: var(--olive-950);
+
+  /* purple / violet  ->  bronze (warm secondary accent) */
+  --color-purple-300: var(--bronze-300); --color-violet-300: var(--bronze-300);
+  --color-purple-400: var(--bronze-400); --color-violet-400: var(--bronze-400);
+  --color-purple-500: var(--bronze-500); --color-violet-500: var(--bronze-500);
+  --color-purple-600: var(--bronze-600); --color-violet-600: var(--bronze-600);
+
+  /* slate / gray  ->  warm olive-tinted neutrals (incl. in-between steps used in pages) */
+  --color-slate-50: #faf9f4;  --color-gray-50: #faf9f4;
+  --color-slate-100: #f3f1e8; --color-gray-100: #f3f1e8;
+  --color-slate-150: #ece9dd; --color-gray-150: #ece9dd;
+  --color-slate-200: #e5e2d4; --color-gray-200: #e5e2d4;
+  --color-slate-250: #dcd8c8; --color-gray-250: #dcd8c8;
+  --color-slate-300: #cdc9b6; --color-gray-300: #cdc9b6;
+  --color-slate-350: #bab5a0; --color-gray-350: #bab5a0;
+  --color-slate-400: #9c9884; --color-gray-400: #9c9884;
+  --color-slate-500: #7a7766; --color-gray-500: #7a7766;
+  --color-slate-600: #5e5c4e; --color-gray-600: #5e5c4e;
+  --color-slate-650: #504e42; --color-gray-650: #504e42;
+  --color-slate-700: #45443a; --color-gray-700: #45443a;
+  --color-slate-750: #3a3a31; --color-gray-750: #3a3a31;
+  --color-slate-800: #2e2f27; --color-gray-800: #2e2f27;
+  --color-slate-850: #26271f; --color-gray-850: #26271f;
+  --color-slate-900: #1f2019; --color-gray-900: #1f2019;
+  --color-slate-950: #15160f; --color-gray-950: #15160f;
+
+  /* emerald  ->  leaf green that sits with olive */
+  --color-emerald-300: #b5d38a;
+  --color-emerald-400: #7fae4a;
+  --color-emerald-500: #5f8f30;
+  --color-emerald-600: #4f7a26;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1), color 0.45s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 
   /**
@@ -161,14 +288,15 @@
 
   h1 {
     font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   h2 {
     font-size: var(--text-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: 1.4;
   }
 
   h3 {

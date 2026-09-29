@@ -1,67 +1,73 @@
-/* Custom glassmorphism and cyberpunk styling utilities */
+/* Surface + accent utilities for the DrishtiGuard olive theme.
+   Utility names are kept from the original cyber theme so existing pages keep working. */
 
 @utility glass {
   background: var(--card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
   color: var(--foreground);
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 @utility glass-dark {
-  background: var(--card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
   color: var(--foreground);
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
+@utility card-soft {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+}
+
 @utility glass-blue {
-  background: rgba(37, 99, 235, 0.05);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(37, 99, 235, 0.15);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
   color: var(--foreground);
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 @utility neon-text {
-  color: #00f5ff;
-  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5), 0 0 20px rgba(0, 245, 255, 0.3);
+  color: var(--accent);
 }
 
 @utility neon-glow {
-  box-shadow: 0 0 20px rgba(0, 245, 255, 0.35), 0 0 40px rgba(0, 245, 255, 0.15);
+  box-shadow: 0 0 20px rgba(143, 163, 74, 0.35), 0 0 40px rgba(143, 163, 74, 0.15);
 }
 
 @utility neon-border {
-  border: 1px solid rgba(0, 245, 255, 0.45);
-  box-shadow: inset 0 0 20px rgba(0, 245, 255, 0.05), 0 0 20px rgba(0, 245, 255, 0.15);
+  border: 1px solid rgba(143, 163, 74, 0.45);
+  box-shadow: inset 0 0 20px rgba(143, 163, 74, 0.05), 0 0 20px rgba(143, 163, 74, 0.15);
 }
 
 @utility grid-bg {
-  background-image: linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(143, 163, 74, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(143, 163, 74, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 @utility btn-primary {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--primary);
   color: var(--primary-foreground);
   font-weight: 600;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 45%, transparent);
+  box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--primary) 70%, transparent);
   cursor: pointer;
 }
 
 .btn-primary:hover {
   filter: brightness(1.08);
-  box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--primary) 70%, transparent);
   transform: translateY(-2px);
 }
 
@@ -69,24 +75,24 @@
   position: relative;
   overflow: hidden;
   background-color: transparent;
-  color: #22d3ee; /* Tailwind cyan-400 */
+  color: var(--accent);
   font-weight: 600;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(0, 245, 255, 0.5);
+  border: 1px solid rgba(143, 163, 74, 0.5);
   cursor: pointer;
 }
 
 .btn-outline:hover {
-  background-color: rgba(0, 245, 255, 0.1);
-  border-color: rgba(0, 245, 255, 0.8);
-  box-shadow: 0 0 20px rgba(0, 245, 255, 0.25);
+  background-color: rgba(143, 163, 74, 0.1);
+  border-color: rgba(143, 163, 74, 0.8);
+  box-shadow: 0 0 20px rgba(143, 163, 74, 0.25);
   transform: translateY(-2px);
 }
 
 @utility gradient-text {
-  background: linear-gradient(135deg, #00f5ff 0%, #0ea5e9 50%, #38bdf8 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -118,6 +124,15 @@
 @keyframes radarSweep {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2s ease-in-out infinite;
 }
 
 @keyframes blink {

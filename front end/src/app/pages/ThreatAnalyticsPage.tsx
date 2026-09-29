@@ -45,7 +45,7 @@ export function ThreatAnalyticsPage() {
             <div className="flex items-end gap-2 h-36">
               {dailyData.map((val, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                  <div className="w-full rounded-t-sm" style={{ height: `${(val/70)*100}%`, background: val > 55 ? 'linear-gradient(180deg, rgba(239,68,68,0.8), rgba(239,68,68,0.3))' : val > 40 ? 'linear-gradient(180deg, rgba(249,115,22,0.7), rgba(249,115,22,0.3))' : 'linear-gradient(180deg, rgba(0,245,255,0.6), rgba(0,245,255,0.2))', boxShadow: val > 55 ? '0 0 8px rgba(239,68,68,0.3)' : 'none' }} />
+                  <div className="w-full rounded-t-sm" style={{ height: `${(val/70)*100}%`, background: val > 55 ? 'linear-gradient(180deg, rgba(239,68,68,0.8), rgba(239,68,68,0.3))' : val > 40 ? 'linear-gradient(180deg, rgba(249,115,22,0.7), rgba(249,115,22,0.3))' : 'linear-gradient(180deg, rgba(143,163,74,0.6), rgba(143,163,74,0.2))', boxShadow: val > 55 ? '0 0 8px rgba(239,68,68,0.3)' : 'none' }} />
                   <span className="text-[9px] text-gray-600 font-mono">D{i+1}</span>
                 </div>
               ))}
@@ -58,7 +58,7 @@ export function ThreatAnalyticsPage() {
               {weeklyData.map((val, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center gap-1">
                   <div className="text-xs font-mono text-gray-500">{val}</div>
-                  <div className="w-full rounded-t-sm" style={{ height: `${(val/60)*100}%`, background: 'linear-gradient(180deg, rgba(0,245,255,0.6), rgba(0,245,255,0.2))' }} />
+                  <div className="w-full rounded-t-sm" style={{ height: `${(val/60)*100}%`, background: 'linear-gradient(180deg, rgba(143,163,74,0.6), rgba(143,163,74,0.2))' }} />
                   <span className="text-[10px] text-gray-500 font-mono">{weekDays[i]}</span>
                 </div>
               ))}
@@ -80,7 +80,7 @@ export function ThreatAnalyticsPage() {
                       <span className={`text-xs font-mono ${cat.color}`}>{cat.pct}%</span>
                     </div>
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full ${cat.bg}`} style={{ width: `${cat.pct}%`, background: cat.color.includes('red') ? '#ef4444' : cat.color.includes('orange') ? '#f97316' : cat.color.includes('amber') ? '#f59e0b' : cat.color.includes('yellow') ? '#eab308' : cat.color.includes('blue') ? '#38bdf8' : '#6b7280' }} />
+                      <div className={`h-full rounded-full ${cat.bg}`} style={{ width: `${cat.pct}%`, background: cat.color.includes('red') ? '#ef4444' : cat.color.includes('orange') ? '#f97316' : cat.color.includes('amber') ? '#f59e0b' : cat.color.includes('yellow') ? '#eab308' : cat.color.includes('blue') ? '#6b8132' : '#6b7280' }} />
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export function ThreatAnalyticsPage() {
                     <div><div className="text-[10px] text-gray-600 font-mono">False Positive</div><div className="text-sm font-bold text-amber-400">{model.falsePos}%</div></div>
                   </div>
                   <div className="h-1 bg-white/5 rounded-full overflow-hidden mt-2">
-                    <div className="h-full rounded-full" style={{ width: `${model.acc}%`, background: 'linear-gradient(90deg, #00f5ff, #0ea5e9)' }} />
+                    <div className="h-full rounded-full" style={{ width: `${model.acc}%`, background: 'linear-gradient(90deg, #8fa34a, #5a6e28)' }} />
                   </div>
                 </div>
               ))}

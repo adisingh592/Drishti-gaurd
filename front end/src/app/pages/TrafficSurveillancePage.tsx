@@ -36,13 +36,13 @@ export function TrafficSurveillancePage() {
             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" /><span className="text-xs font-mono text-gray-500">LIVE</span></div>
           </div>
           {/* Road map mockup */}
-          <div className="relative rounded-xl overflow-hidden p-4" style={{ background: 'linear-gradient(135deg, #050d1a, #071222)', border: '1px solid rgba(0,245,255,0.15)', minHeight: '300px' }}>
-            <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="relative rounded-xl overflow-hidden p-4" style={{ background: 'linear-gradient(135deg, #1a1c14, #23261b)', border: '1px solid rgba(143,163,74,0.15)', minHeight: '300px' }}>
+            <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(143,163,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(143,163,74,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             {/* Roads */}
             <div className="absolute top-0 bottom-0 left-1/2 w-8 -translate-x-1/2" style={{ background: 'rgba(255,255,255,0.03)', borderLeft: '2px dashed rgba(255,255,255,0.1)', borderRight: '2px dashed rgba(255,255,255,0.1)' }} />
             <div className="absolute left-0 right-0 top-1/2 h-8 -translate-y-1/2" style={{ background: 'rgba(255,255,255,0.03)', borderTop: '2px dashed rgba(255,255,255,0.1)', borderBottom: '2px dashed rgba(255,255,255,0.1)' }} />
             {/* Vehicle markers */}
-            <div className="absolute top-1/4 left-[48%] w-4 h-6 rounded-sm bg-cyan-400/40 border border-cyan-400/60" style={{ boxShadow: '0 0 6px rgba(0,245,255,0.4)' }} />
+            <div className="absolute top-1/4 left-[48%] w-4 h-6 rounded-sm bg-cyan-400/40 border border-cyan-400/60" style={{ boxShadow: '0 0 6px rgba(143,163,74,0.4)' }} />
             <div className="absolute top-2/3 left-[52%] w-4 h-6 rounded-sm bg-red-400/40 border border-red-400/60" style={{ boxShadow: '0 0 8px rgba(239,68,68,0.4)' }} />
             <div className="absolute top-[48%] left-1/4 w-6 h-4 rounded-sm bg-cyan-400/40 border border-cyan-400/60" />
             <div className="absolute top-[52%] right-1/4 w-6 h-4 rounded-sm bg-amber-400/40 border border-amber-400/60" />
@@ -63,13 +63,13 @@ export function TrafficSurveillancePage() {
             <div className="glass rounded-lg p-3 border border-slate-200 dark:border-white/5">
               <div className="flex items-center justify-between mb-2"><span className="text-xs font-mono text-gray-500">SPEED DISTRIBUTION</span><TrendingUp className="w-3 h-3 text-cyan-400" /></div>
               <div className="flex items-end gap-1 h-20">
-                {speedData.map((v, i) => (<div key={i} className="flex-1 rounded-t-sm" style={{ height: `${(v/120)*100}%`, background: v > 100 ? 'rgba(239,68,68,0.7)' : v > 70 ? 'rgba(249,115,22,0.6)' : 'rgba(0,245,255,0.4)', boxShadow: v > 100 ? '0 0 6px rgba(239,68,68,0.3)' : 'none' }} />))}
+                {speedData.map((v, i) => (<div key={i} className="flex-1 rounded-t-sm" style={{ height: `${(v/120)*100}%`, background: v > 100 ? 'rgba(239,68,68,0.7)' : v > 70 ? 'rgba(249,115,22,0.6)' : 'rgba(143,163,74,0.4)', boxShadow: v > 100 ? '0 0 6px rgba(239,68,68,0.3)' : 'none' }} />))}
               </div>
             </div>
             <div className="glass rounded-lg p-3 border border-slate-200 dark:border-white/5">
               <div className="flex items-center justify-between mb-2"><span className="text-xs font-mono text-gray-500">CONGESTION INDEX</span><Activity className="w-3 h-3 text-amber-400" /></div>
               <div className="flex items-end gap-1 h-20">
-                {congestionData.map((v, i) => (<div key={i} className="flex-1 rounded-t-sm" style={{ height: `${v}%`, background: v > 70 ? 'rgba(239,68,68,0.6)' : v > 50 ? 'rgba(249,115,22,0.5)' : 'rgba(0,245,255,0.4)' }} />))}
+                {congestionData.map((v, i) => (<div key={i} className="flex-1 rounded-t-sm" style={{ height: `${v}%`, background: v > 70 ? 'rgba(239,68,68,0.6)' : v > 50 ? 'rgba(249,115,22,0.5)' : 'rgba(143,163,74,0.4)' }} />))}
               </div>
             </div>
           </div>
