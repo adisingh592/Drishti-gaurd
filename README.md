@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="front end/public/favicon.svg" width="84" alt="DrishtiGuard logo" />
+<img src="frontend/public/favicon.svg" width="84" alt="DrishtiGuard logo" />
 
 # DrishtiGuard
 
@@ -56,7 +56,7 @@ Typical flow: **upload a CCTV clip → the backend analyses it → you review ev
 
 ```
 ┌──────────────────────────┐        /api (Vite proxy)        ┌───────────────────────────────┐
-│  front end/  (React 19)  │ ──────────────────────────────▶ │  backend/  (FastAPI :8000)     │
+│  frontend/   (React 19)  │ ──────────────────────────────▶ │  backend/  (FastAPI :8000)     │
 │  Dashboard · Upload ·    │ ◀────────────────────────────── │  upload · analyze · files      │
 │  Alerts · Analytics …    │        JSON + media URLs        │  pipeline · risk scoring       │
 └──────────────────────────┘                                 └──────────────┬────────────────┘
@@ -92,30 +92,43 @@ For the full design, see [docs/MULTI_MODEL_ARCHITECTURE.md](docs/MULTI_MODEL_ARC
 ## Repository layout
 
 ```
-Drishti gaurd/
-├── front end/                 # React 19 + Vite 6 + Tailwind v4 web app
-│   ├── public/favicon.svg
+Drishti-gaurd/
+├── frontend/                  # React 19 + Vite 6 + Tailwind v4 web app  → frontend/README.md
+│   ├── public/                # favicon, static assets
 │   └── src/
 │       ├── app/
-│       │   ├── layouts/RootLayout.tsx     # sidebar + top bar shell
-│       │   ├── pages/                     # Dashboard, LiveDetection, UploadAnalyze, …
-│       │   ├── components/                # BrandMark, ThemeToggle, module wheel
-│       │   └── hooks/useBackendHealth.ts  # polls /api/health
-│       ├── services/api.ts                # typed client for the FastAPI backend
-│       └── styles/theme.css               # design tokens (olive theme)
-├── backend/                   # FastAPI analysis API
-│   ├── app/api/routes/        # upload.py · analyze.py · files.py
-│   ├── app/services/          # pipeline, yolo_detector, weapon_detector, crowd, traffic, risk
+│       │   ├── layouts/       # RootLayout: sidebar + top bar shell
+│       │   ├── pages/         # one component per route (+ auth/)
+│       │   ├── components/    # brand/ · landing/ · navigation/ · theme/
+│       │   └── hooks/         # useBackendHealth (polls /api/health)
+│       ├── services/          # typed API client
+│       ├── types/ · utils/    # API types and result → UI mapping
+│       └── styles/            # theme tokens + global utilities
+├── backend/                   # FastAPI analysis API                      → backend/README.md
+│   ├── app/
+│   │   ├── api/routes/        # upload · analyze · files
+│   │   ├── services/          # pipeline, detectors, crowd, traffic, risk scoring
+│   │   ├── models/            # Pydantic schemas
+│   │   └── config.py          # settings from .env
 │   └── run.py
-├── ai_models/                 # Multi-model layer + MasterDetectionEngine
+├── ai_models/                 # multi-model layer                         → ai_models/README.md
+│   ├── MasterDetectionEngine/ # loads models, merges detections, scores threats
 │   ├── Model_A_SecurityThreats/   (frozen Phase 1 weights)
 │   ├── Model_B_CrowdBehavior/
 │   ├── Model_C_TrafficMonitoring/
 │   ├── Model_D_SafetyMonitoring/
-│   └── MasterDetectionEngine/
-├── ml/                        # Phase 1 dataset + training pipeline (see ml/README.md)
-└── docs/                      # architecture notes, screenshots
+│   ├── common/                # dataset registry + downloaders
+│   └── scripts/               # dataset audit, B/C/D training pipeline
+├── ml/                        # Phase 1 dataset + training pipeline       → ml/README.md
+│   ├── config/ · scripts/ · drishti_ml/ · inference/ · api/ · dashboard/ · docker/
+├── docs/                      # architecture notes, screenshots
+├── uploads/ · reports/        # runtime output folders (contents git-ignored)
+├── .editorconfig              # shared editor formatting rules
+├── .gitattributes             # line-ending + binary rules
+└── .gitignore
 ```
+
+Each top-level component has its own README with setup details. Generated content is never committed: dependencies, datasets, model weights, training runs, uploads and `.env` files.
 
 ---
 
@@ -154,12 +167,12 @@ python -m ai_models.setup_models
 ### 3. Frontend
 
 ```bash
-cd "front end"
+cd frontend
 pnpm install      # or: npm install
 pnpm dev          # or: npm run dev
 ```
 
-In development, Vite proxies `/api/*` to `http://127.0.0.1:8000` (see `front end/vite.config.ts`).
+In development, Vite proxies `/api/*` to `http://127.0.0.1:8000` (see `frontend/vite.config.ts`).
 
 | Script | Purpose |
 |---|---|
@@ -193,7 +206,7 @@ In development, Vite proxies `/api/*` to `http://127.0.0.1:8000` (see `front end
 | `BATCH_SIZE` | `16` | Inference batch size |
 | `SIMULATION_MODE` | `false` | Skip loading YOLO weights (for testing the API/UI without models) |
 
-### `front end/.env`
+### `frontend/.env`
 
 | Variable | Default | Description |
 |---|---|---|
@@ -290,7 +303,7 @@ The interface uses an **"Olive Field"** theme: warm cream surfaces, deep olive a
 | `--warn` | `#d9772b` | `#f0a15a` | Medium / attention |
 | `--danger` | `#c93a3a` | `#f07c7c` | High / critical |
 
-All tokens are defined in [`front end/src/styles/theme.css`](front%20end/src/styles/theme.css). The Tailwind `cyan`, `blue`, `sky` and `indigo` palettes are **remapped to an olive scale**, and `slate` and `gray` are remapped to warm neutrals, so every page shares the theme. You can also use `bg-olive-500`, `text-safe`, `bg-danger-bg` and similar classes directly.
+All tokens are defined in [`frontend/src/styles/theme.css`](frontend/src/styles/theme.css). The Tailwind `cyan`, `blue`, `sky` and `indigo` palettes are **remapped to an olive scale**, and `slate` and `gray` are remapped to warm neutrals, so every page shares the theme. You can also use `bg-olive-500`, `text-safe`, `bg-danger-bg` and similar classes directly.
 
 ### Dashboard layout
 
