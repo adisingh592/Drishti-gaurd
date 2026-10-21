@@ -44,7 +44,7 @@ export function CameraManagementPage() {
 
       {/* Summary */}
       <div className="grid grid-cols-4 gap-3">
-        {[['128','Total Cameras','text-cyan-400',Camera],[`${onlineCount}`,'Online','text-emerald-400',Signal],[`${alertCount}`,'Alerts','text-red-400',Circle],[`${offlineCount}`,'Offline','text-gray-400',Circle]].map(([v,l,c,I]) => {
+        {([['128','Total Cameras','text-cyan-400',Camera],[`${onlineCount}`,'Online','text-emerald-400',Signal],[`${alertCount}`,'Alerts','text-red-400',Circle],[`${offlineCount}`,'Offline','text-gray-400',Circle]] as const).map(([v,l,c,I]) => {
           const Icon = I as typeof Camera;
           return (<div key={l as string} className="glass rounded-xl p-4 border border-slate-200 dark:border-white/5"><div className="flex items-center gap-2 mb-2"><Icon className={`w-4 h-4 ${c}`} /><span className="text-xs text-gray-500 font-mono">{l}</span></div><div className={`text-2xl font-bold ${c}`}>{v}</div></div>);
         })}

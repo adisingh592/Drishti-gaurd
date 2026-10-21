@@ -1,0 +1,6 @@
+packages:
+  - '.'
+
+# Allow esbuild's postinstall (Vite's bundler) under pnpm 10's build-script policy
+onlyBuiltDependencies:
+  - esbuild

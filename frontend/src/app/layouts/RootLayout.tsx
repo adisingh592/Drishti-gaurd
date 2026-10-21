@@ -22,10 +22,10 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThemeToggle } from "../components/ThemeToggle";
-import { BrandMark } from "../components/BrandMark";
-import { WeaponScrollBar } from "../components/WeaponScrollBar";
-import { WeaponWheel } from "../components/WeaponWheel";
+import { ThemeToggle } from "../components/theme/ThemeToggle";
+import { BrandMark } from "../components/brand/BrandMark";
+import { WeaponScrollBar } from "../components/navigation/WeaponScrollBar";
+import { WeaponWheel } from "../components/navigation/WeaponWheel";
 import { useBackendHealth } from "../hooks/useBackendHealth";
 
 interface NavItem {

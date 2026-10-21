@@ -35,7 +35,7 @@ export function CrowdIntelligencePage() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-3">
-        {[['2,847','Total People','text-cyan-400',Users],['3','High Risk Zones','text-red-400',AlertTriangle],['68%','Avg Density','text-amber-400',Activity],['+12%','Flow Rate','text-emerald-400',TrendingUp]].map(([v,l,c,I]) => {
+        {([['2,847','Total People','text-cyan-400',Users],['3','High Risk Zones','text-red-400',AlertTriangle],['68%','Avg Density','text-amber-400',Activity],['+12%','Flow Rate','text-emerald-400',TrendingUp]] as const).map(([v,l,c,I]) => {
           const Icon = I as typeof Users;
           return (
             <div key={l as string} className="glass rounded-xl p-4 border border-slate-200 dark:border-white/5">

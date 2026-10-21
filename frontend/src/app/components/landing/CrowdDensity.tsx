@@ -88,7 +88,7 @@ export default function CrowdDensity() {
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-3 mt-4">
-                {[['2,847','Total People','text-cyan-400',Users],['3','High Risk Zones','text-red-400',AlertTriangle],['68%','Avg Density','text-amber-400',Activity]].map(([v,l,c,I]) => {
+                {([['2,847','Total People','text-cyan-400',Users],['3','High Risk Zones','text-red-400',AlertTriangle],['68%','Avg Density','text-amber-400',Activity]] as const).map(([v,l,c,I]) => {
                   const Icon = I as typeof Users;
                   return (<div key={l} className="glass rounded-lg p-3"><div className="flex items-center gap-2 mb-1"><Icon className={`w-3.5 h-3.5 ${c}`} /><span className="text-xs text-gray-500 font-mono">{l}</span></div><div className={`text-xl font-bold ${c}`}>{v}</div></div>);
                 })}

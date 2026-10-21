@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Shield, Menu, X, Zap } from 'lucide-react';
 import { Link } from 'react-router';
-import { ThemeToggle } from '../../components/ThemeToggle';
+import { ThemeToggle } from '../theme/ThemeToggle';
 
 const navLinks = [
   { label: 'Home', href: '#home' },

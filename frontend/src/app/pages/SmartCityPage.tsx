@@ -18,7 +18,7 @@ export function SmartCityPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-5 gap-3">
-        {[['5','Zones','text-cyan-400',Globe],['128','Cameras','text-blue-400',Camera],['4','Threats','text-red-400',AlertTriangle],['2,847','People','text-amber-400',Users],['482','Vehicles','text-emerald-400',Car]].map(([v,l,c,I]) => {
+        {([['5','Zones','text-cyan-400',Globe],['128','Cameras','text-blue-400',Camera],['4','Threats','text-red-400',AlertTriangle],['2,847','People','text-amber-400',Users],['482','Vehicles','text-emerald-400',Car]] as const).map(([v,l,c,I]) => {
           const Icon = I as typeof Globe;
           return (<div key={l as string} className="glass rounded-xl p-3 border border-slate-200 dark:border-white/5 text-center"><Icon className={`w-4 h-4 ${c} mx-auto mb-1`} /><div className={`text-lg font-bold ${c}`}>{v}</div><div className="text-[10px] text-gray-500 font-mono">{l}</div></div>);
         })}

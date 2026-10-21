@@ -12,7 +12,7 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import { pollUntilComplete, startAnalysis, uploadVideo } from '@/services/api';
-import type { AnalysisResult } from '@/types/analysis';
+import type { AnalysisResult, TimelineUIEvent } from '@/types/analysis';
 import { formatVideoTime, mapResultToUI, scoreGradient } from '@/utils/analysisUi';
 
 const PLACEHOLDER_TIMELINE = [
@@ -40,7 +40,7 @@ export function UploadAnalyzePage() {
   const [currentTime, setCurrentTime] = useState(0);
   const [playing, setPlaying] = useState(false);
 
-  const [timeline, setTimeline] = useState(PLACEHOLDER_TIMELINE);
+  const [timeline, setTimeline] = useState<TimelineUIEvent[]>(PLACEHOLDER_TIMELINE);
   const [snapshots, setSnapshots] = useState<{ time: string; label: string; severity: string; imageUrl: string; timestampSeconds: number }[]>([]);
   const [score, setScore] = useState(0);
   const [riskLevel, setRiskLevel] = useState('');

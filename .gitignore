@@ -1,6 +1,6 @@
 # ==============================================================================
 #  DrishtiGuard — root .gitignore
-#  Covers: front end/ (Node/Vite), backend/ (FastAPI), ai_models/, ml/ (YOLO)
+#  Covers: frontend/ (Node/Vite), backend/ (FastAPI), ai_models/, ml/ (YOLO)
 #  Rule of thumb: commit source, configs, docs and *.example files;
 #  never commit secrets, dependencies, datasets, weights, runs or user uploads.
 # ==============================================================================
@@ -191,5 +191,5 @@ desktop.ini
 *.cmd
 
 # Unused design-export components (never imported; deps not installed)
-front end/src/app/components/ui/
-front end/src/app/components/figma/
+frontend/src/app/components/ui/
+frontend/src/app/components/figma/

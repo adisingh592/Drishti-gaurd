@@ -1,5 +1,5 @@
 # ==============================================================================
-#  DrishtiGuard — front end/.gitignore
+#  DrishtiGuard — frontend/.gitignore
 #  Generic rules (node_modules, dist, .env, OS/IDE files, logs) live in the
 #  repository root .gitignore. Only frontend-specific entries belong here.
 # ==============================================================================

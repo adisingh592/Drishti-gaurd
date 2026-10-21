@@ -22,7 +22,7 @@ export function TrafficSurveillancePage() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-3">
-        {[['482','Vehicles Tracked','text-cyan-400',Car],['3','Rash Driving','text-red-400',AlertTriangle],['2','Accidents','text-orange-400',Activity],['68 km/h','Avg Speed','text-amber-400',Gauge]].map(([v,l,c,I]) => {
+        {([['482','Vehicles Tracked','text-cyan-400',Car],['3','Rash Driving','text-red-400',AlertTriangle],['2','Accidents','text-orange-400',Activity],['68 km/h','Avg Speed','text-amber-400',Gauge]] as const).map(([v,l,c,I]) => {
           const Icon = I as typeof Car;
           return (<div key={l as string} className="glass rounded-xl p-4 border border-slate-200 dark:border-white/5"><div className="flex items-center gap-2 mb-2"><Icon className={`w-4 h-4 ${c}`} /><span className="text-xs text-gray-500 font-mono">{l}</span></div><div className={`text-2xl font-bold ${c}`}>{v}</div></div>);
         })}

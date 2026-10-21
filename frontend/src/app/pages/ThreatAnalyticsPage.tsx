@@ -31,7 +31,7 @@ export function ThreatAnalyticsPage() {
 
       {/* Key metrics */}
       <div className="grid grid-cols-4 gap-3">
-        {[['166','Total Threats','text-red-400',Target],['99.4%','AI Accuracy','text-cyan-400',Cpu],['< 50ms','Avg Response','text-emerald-400',Activity],['82','Threat Score','text-orange-400',AlertTriangle]].map(([v,l,c,I]) => {
+        {([['166','Total Threats','text-red-400',Target],['99.4%','AI Accuracy','text-cyan-400',Cpu],['< 50ms','Avg Response','text-emerald-400',Activity],['82','Threat Score','text-orange-400',AlertTriangle]] as const).map(([v,l,c,I]) => {
           const Icon = I as typeof Target;
           return (<div key={l as string} className="glass rounded-xl p-4 border border-slate-200 dark:border-white/5"><div className="flex items-center gap-2 mb-2"><Icon className={`w-4 h-4 ${c}`} /><span className="text-xs text-gray-500 font-mono">{l}</span></div><div className={`text-2xl font-bold ${c}`}>{v}</div></div>);
         })}
